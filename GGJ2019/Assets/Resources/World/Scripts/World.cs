@@ -8,6 +8,14 @@ public class World : MonoBehaviour
     private static World _instance;
     private static object _lock = new object();
 
+    [SerializeField]
+    private Fire _fire;
+
+    public Fire Fire
+    {
+        get { return _fire; }
+    }
+
     //Static const
     [SerializeField]
     private Player[] _players;
@@ -33,6 +41,7 @@ public class World : MonoBehaviour
         {
             _instance = this;
             _players = FindObjectsOfType<Player>();
+            
         }
     }
 

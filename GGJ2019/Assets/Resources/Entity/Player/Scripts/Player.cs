@@ -7,6 +7,14 @@ public class Player : MonoBehaviour, IEntity
 {
     public ColorId colorId;
 
+    [SerializeField]
+    private int _playerNumber = 1;
+   
+    public int PlayerNumber
+    {
+        get { return _playerNumber; }
+    }
+
     private string _baseColor;
     private string _color;
 

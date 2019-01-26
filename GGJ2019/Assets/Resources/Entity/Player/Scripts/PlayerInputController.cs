@@ -7,7 +7,12 @@ public class PlayerInputController : MonoBehaviour
     int _playerNumber = 1;
     PlayerInputs _playerInputs;
 
-	void Update ()
+    private void Start()
+    {
+        _playerNumber = GetComponent<Player>().PlayerNumber;
+    }
+
+    void Update ()
     {
         Vector3 movement = new Vector3(Input.GetAxisRaw("Move_Horizontal_P" + _playerNumber), -Input.GetAxisRaw("Move_Vertical_P" + _playerNumber), 0);
         Vector3 rotation = new Vector3(Input.GetAxisRaw("Rotate_Horizontal_P" + _playerNumber), -Input.GetAxisRaw("Rotate_Vertical_P" + _playerNumber), 0);

@@ -13,6 +13,7 @@ public class EliMonster : StateMachine
 
 	void Start ()
     {
+        _players = World.Instance.Players;
         currentState = EliMonsterStates.Spawn;
 	}
 	
@@ -71,21 +72,24 @@ public class EliMonster : StateMachine
         Transform closest = null;
         float closestDistance = 0;
 
-        for (int i = 0; i < _players.Length; i++)
+        if (_players != null)
         {
-            // if color == _players[i].getcolor
-            if (closest == null)
+            for (int i = 0; i < _players.Length; i++)
             {
-                closest = _players[i].transform;
-                closestDistance = Vector3.Distance(transform.position, _players[i].transform.position);
-            }
-            else
-            {
-                float currentDistance = Vector3.Distance(transform.position, _players[i].transform.position);
-                if (currentDistance < closestDistance)
+                // if color == _players[i].getcolor
+                if (closest == null)
                 {
                     closest = _players[i].transform;
-                    closestDistance = currentDistance;
+                    closestDistance = Vector3.Distance(transform.position, _players[i].transform.position);
+                }
+                else
+                {
+                    float currentDistance = Vector3.Distance(transform.position, _players[i].transform.position);
+                    if (currentDistance < closestDistance)
+                    {
+                        closest = _players[i].transform;
+                        closestDistance = currentDistance;
+                    }
                 }
             }
         }
