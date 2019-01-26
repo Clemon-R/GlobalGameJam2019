@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class Color {
+public static class Color
+{
     public static void ChangeGameObjectColor(GameObject obj, string colorCode)
     {
         if (obj == null)

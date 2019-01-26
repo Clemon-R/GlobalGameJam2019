@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerProjectile : MonoBehaviour
+public class PlayerProjectile : MonoBehaviour, IEntity
 {
+    string _color;
 
     [SerializeField]
     private float _moveSpeed = 20;
@@ -37,8 +38,22 @@ public class PlayerProjectile : MonoBehaviour
             Monster monster = collision.transform.GetComponent<Monster>();
             if (monster != null)
             {
-                //monster.Hit(_color);
+                monster.TakeHit(gameObject, _color);
             }
         }
+    }
+
+    public void Hit(GameObject target, string colorCode)
+    {
+    }
+
+    public void TakeHit(GameObject caster, string colorCode)
+    {
+        //throw new System.NotImplementedException();
+    }
+
+    public string GetColor()
+    {
+        throw new System.NotImplementedException();
     }
 }

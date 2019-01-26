@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WormMonster : StateMachine
+public class WormMonster : Monster
 {
     public enum WormMonsterStates { Spawn, MoveBuried, Kicked, MoveLand, Die}
 
@@ -21,20 +21,16 @@ public class WormMonster : StateMachine
     private float _kickedStartTime;
     private Rigidbody2D rigidBody;
 
-	void Start ()
+	protected override void Start ()
     {
+        base.Start();
         rigidBody = GetComponent<Rigidbody2D>();
         _fire = World.Instance.Fire;
         GetComponent<BoxCollider2D>().isTrigger = true;
         currentState = WormMonsterStates.MoveBuried;
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        Debug.Log("collisioning ");
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Collided with " + collision.transform.name);
         if ((WormMonsterStates)currentState == WormMonsterStates.MoveBuried && collision.transform.CompareTag("Player"))
@@ -61,7 +57,7 @@ public class WormMonster : StateMachine
 
     void MoveBuried_EnterState()
     {
-
+        // Play buried animation
     }
 
     void MoveBuried_Update()
@@ -82,8 +78,11 @@ public class WormMonster : StateMachine
     {
 
     }
+
     void Kicked_EnterState()
     {
+        // Play kicked animation
+        Debug.Log("Enter kicked");
         Vector3 direction = _fire.transform.position - transform.position;
         Vector2 perpendicularVector = Vector2.Perpendicular(direction).normalized;
 
@@ -95,7 +94,8 @@ public class WormMonster : StateMachine
 
     void Kicked_Update()
     {
-        transform.position = Vector3.Lerp(_kickedStartPosition, _kickedLandPosition, _kickedStartTime + _kickedLandTime / Time.time);
+        Debug.Log((_kickedStartTime + _kickedLandTime) / Time.time);
+        transform.position = Vector3.Lerp(_kickedStartPosition, _kickedLandPosition, Time.time / (_kickedStartTime + _kickedLandTime));
         if (_kickedStartTime + _kickedLandTime < Time.time)
         {
             currentState = WormMonsterStates.MoveLand;
@@ -104,13 +104,13 @@ public class WormMonster : StateMachine
 
     void Kicked_ExitState()
     {
-
+        Debug.Log("Kick exit");
     }
 
     void MoveLand_EnterState()
     {
+        // Play move on land animation
         GetComponent<BoxCollider2D>().enabled = true;
-        GetComponent<BoxCollider2D>().isTrigger = false;
     }
 
     void MoveLand_Update()

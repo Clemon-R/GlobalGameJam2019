@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EliMonster : StateMachine
+public class EliMonster : Monster
 {
     public enum EliMonsterStates { Spawn, Move, Die }
     private Player[] _players;
     private Rigidbody2D rigidBody;
 
     [SerializeField]
-    private float _moveSpeed;
+    private float _moveSpeed = 8;
 
-	void Start ()
+	protected override void Start ()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         _players = World.Instance.Players;

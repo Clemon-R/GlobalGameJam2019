@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour, IEntity
+public class Monster : StateMachine, IEntity
 {
-    public GameObject tmpTarget;
-    private string _color;
+    [SerializeField]
+    private float _maxHp = 100;
+
+    private float _currentHp;
+    protected string _color;
 
     public void Hit(GameObject target, string colorCode)
     {
@@ -22,19 +25,22 @@ public class Monster : MonoBehaviour, IEntity
     {
         if (caster == null)
             return;
+        if (colorCode == _color)
+        {
+            
+        }
         Debug.Log("[" + name + "] - Get attacked by: " + caster.name);
     }
 
     //Constuct for the monster
-    public void Start()
+    protected virtual void Start()
     {
         Debug.Log("[" + name + "] - Constructing....");
-        var randomColor = GetRandomColors();
-        _color = randomColor;
+        _color = GetRandomColors();
         Color.ChangeGameObjectColor(this.gameObject, _color);
         Debug.Log("[" + name + "] - Construct the gameobject with the color: " + _color);
         Debug.Log("[" + name + "] - Constructed");
-        Hit(tmpTarget, _color);
+        _currentHp = _maxHp;
     }
 
     private string GetRandomColors()
