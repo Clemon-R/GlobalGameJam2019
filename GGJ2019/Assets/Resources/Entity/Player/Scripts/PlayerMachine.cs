@@ -21,6 +21,11 @@ public class PlayerMachine : StateMachine
     private float _shootRate = 0.1f;
     private float _lastShot;
 
+    [SerializeField]
+    private float _maxRadiusX = 15.0f;
+    [SerializeField]
+    private float _maxRadiusY = 7.5f;
+
     private Vector3 _movementInput;
     private Vector3 _rotationInput;
 
@@ -77,9 +82,9 @@ public class PlayerMachine : StateMachine
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Vector3.forward, _rotationInput), _rotateSpeed * Time.deltaTime);
         if (_inputController.GetInputs().Shoot)
             Shoot();
-        if (Mathf.Abs(transform.position.x + _movementInput.x) > 15)
+        if (Mathf.Abs(transform.position.x + _movementInput.x) > _maxRadiusX)
             _movementInput.x = 0;
-        if (Mathf.Abs(transform.position.y + _movementInput.y) > 7.5)
+        if (Mathf.Abs(transform.position.y + _movementInput.y) > _maxRadiusY)
             _movementInput.y = 0;
         if (_movementInput == Vector3.zero)
         {
