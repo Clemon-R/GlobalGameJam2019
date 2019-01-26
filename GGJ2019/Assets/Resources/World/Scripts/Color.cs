@@ -18,12 +18,4 @@ public static class ColorUtil
             return Colors.PURPLE;
         return b;
     }
-
-    public static void ChangeGameObjectColor(GameObject go, ColorUtil.Colors newColor)
-    {
-        foreach(Transform child in go.transform)
-        {
-
-        }
-    }
 }
