@@ -45,11 +45,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-<<<<<<< Updated upstream:GGJ2019/Assets/Resources/Sprites/VFX/bullet_00_purple.png.meta
-  spritePixelsToUnits: 100
-=======
   spritePixelsToUnits: 16
->>>>>>> Stashed changes:GGJ2019/Assets/Resources/Sprites/VFX/bullet_blue_explo_00.png.meta
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,7 +119,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: c6a1572e473178a4888976da7b93f10f
     vertices: []
     indices: 
     edges: []
