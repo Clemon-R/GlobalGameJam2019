@@ -6,27 +6,49 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    private ColorUtil.Colors _baseColor;
-    private ColorUtil.Colors _currentColor;
-
-    [SerializeField]
     private int _playerNumber = 1;
-   
     public int PlayerNumber
     {
         get { return _playerNumber; }
     }
 
+    [SerializeField]
+    private ColorUtil.Colors _baseColor;
+    private ColorUtil.Colors _currentColor;
+
+    private bool _temporarilyColorChanged;
+    private float _colorChangeTime;
+    private float _colorChangeDuration;
+
+    private ColorChanger _colorChanger;
+    private PlayerMachine _playerMachine;
+
     private bool _out;
 
     void Start ()
     {
+        _colorChanger = GetComponent<ColorChanger>();
+        _playerMachine = GetComponent<PlayerMachine>();
         _currentColor = _baseColor;
     }
 
     public bool IsOutside()
     {
         return _out;
+    }
+
+    private void Update()
+    {
+        if (_temporarilyColorChanged && _colorChangeDuration + _colorChangeTime < Time.time)
+        {
+            _temporarilyColorChanged = false;
+            ChangeColor(_baseColor);
+        }
+    }
+
+    public void TakeHit()
+    {
+        _playerMachine.currentState = PlayerMachine.PlayerStates.Die;
     }
 
     public void SetIsOutside(bool value)
@@ -43,6 +65,15 @@ public class Player : MonoBehaviour
     public void ChangeColor(ColorUtil.Colors newColor)
     {
         _currentColor = newColor;
+        _colorChanger.ChangeColor(_currentColor);
+    }
+
+    public void TemporaryChangeColor(float duration, ColorUtil.Colors newColor)
+    {
+        _temporarilyColorChanged = true;
+        _colorChangeDuration = duration;
+        _colorChangeTime = Time.time;
+        ChangeColor(newColor);
     }
 
     public ColorUtil.Colors GetColor()

@@ -7,6 +7,11 @@ public class WormMonster : Monster
     public enum WormMonsterStates { Spawn, MoveBuried, Kicked, MoveLand, Die}
 
     [SerializeField]
+    private int _buriedFireDamage = 10;
+    [SerializeField]
+    private int _landFireDamage = 20;
+
+    [SerializeField]
     private float _buriedMoveSpeed = 30;
     [SerializeField]
     private float _landMoveSpeed = 5;
@@ -26,17 +31,41 @@ public class WormMonster : Monster
         base.Start();
         rigidBody = GetComponent<Rigidbody2D>();
         _fire = World.Instance.Fire;
-        //GetComponent<BoxCollider2D>().isTrigger = true;
         currentState = WormMonsterStates.MoveBuried;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Collided with " + collision.transform.name);
-        if ((WormMonsterStates)currentState == WormMonsterStates.MoveBuried && collision.transform.CompareTag("Player"))
+        if ((WormMonsterStates)currentState == WormMonsterStates.MoveBuried)
         {
-            currentState = WormMonsterStates.Kicked;
-            GetComponent<BoxCollider2D>().enabled = false;
+            if (collision.transform.CompareTag("Player"))
+            {
+                currentState = WormMonsterStates.Kicked;
+                GetComponent<BoxCollider2D>().enabled = false;
+            }
+            if (collision.transform.CompareTag("Fire"))
+            {
+                Fire fire = collision.GetComponent<Fire>();
+                if (fire != null)
+                {
+                    fire.TakeHit(_buriedFireDamage);
+                }
+            }
+        }
+        else if ((WormMonsterStates)currentState == WormMonsterStates.MoveLand)
+        {
+            if (collision.transform.CompareTag("Player"))
+            {
+                Player player = collision.GetComponent<Player>();
+
+                player.TakeHit();
+            }
+            if (collision.transform.CompareTag("Fire"))
+            {
+                Fire fire = collision.GetComponent<Fire>();
+                fire.TakeHit(_landFireDamage);
+            }
         }
     }
 

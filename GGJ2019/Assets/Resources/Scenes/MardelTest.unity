@@ -113,11 +113,31 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &323110845 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4735525274005952, guid: 773c1357e39331b44aad1d02408d6a7f,
+--- !u!1 &323110838 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1404366348560356, guid: 773c1357e39331b44aad1d02408d6a7f,
     type: 2}
   m_PrefabInternal: {fileID: 1680017415}
+--- !u!114 &323110839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 323110838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e310169a5712022419d573b401226971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteColorsList:
+  - _color: 0
+    _sprite: {fileID: 21300000, guid: efdd6d66c4f4bea488dcfd68c05fac39, type: 3}
+  - _color: 1
+    _sprite: {fileID: 21300000, guid: a4f46ef7db2e42141b1bb1f705f45395, type: 3}
+  - _color: 2
+    _sprite: {fileID: 21300000, guid: efdd6d66c4f4bea488dcfd68c05fac39, type: 3}
+  - _color: 3
+    _sprite: {fileID: 21300000, guid: 5e5ca334a7af8674790ec4283ba73644, type: 3}
 --- !u!1 &819058809
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,11 +161,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 819058809}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.9, y: 1.42, z: -4.55}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
-  m_Father: {fileID: 323110845}
+  m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!81 &819058811
@@ -233,6 +253,11 @@ Prefab:
     - target: {fileID: 4735525274005952, guid: 773c1357e39331b44aad1d02408d6a7f, type: 2}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114741496023295824, guid: 773c1357e39331b44aad1d02408d6a7f,
+        type: 2}
+      propertyPath: _baseColor
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 773c1357e39331b44aad1d02408d6a7f, type: 2}
