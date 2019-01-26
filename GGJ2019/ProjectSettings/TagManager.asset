@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Monster
+=======
+  - Enemy
+>>>>>>> e02aa5e13693e43cdc7c7e8d96c51e076d8774d3
   layers:
   - Default
   - TransparentFX
