@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EliMonster : StateMachine
+public class EliMonster : Monster
 {
     public enum EliMonsterStates { Spawn, Move, Die }
     private Player[] _players;
     private Rigidbody2D rigidBody;
 
     [SerializeField]
-    private float _moveSpeed;
+    private float _moveSpeed = 8;
 
-	void Start ()
+	protected override void Start ()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         _players = World.Instance.Players;
@@ -77,19 +77,21 @@ public class EliMonster : StateMachine
         {
             for (int i = 0; i < _players.Length; i++)
             {
-                // if color == _players[i].getcolor
-                if (closest == null)
+                if (GetColor() == _players[i].GetColor())
                 {
-                    closest = _players[i].transform;
-                    closestDistance = Vector3.Distance(transform.position, _players[i].transform.position);
-                }
-                else
-                {
-                    float currentDistance = Vector3.Distance(transform.position, _players[i].transform.position);
-                    if (currentDistance < closestDistance)
+                    if (closest == null)
                     {
                         closest = _players[i].transform;
-                        closestDistance = currentDistance;
+                        closestDistance = Vector3.Distance(transform.position, _players[i].transform.position);
+                    }
+                    else
+                    {
+                        float currentDistance = Vector3.Distance(transform.position, _players[i].transform.position);
+                        if (currentDistance < closestDistance)
+                        {
+                            closest = _players[i].transform;
+                            closestDistance = currentDistance;
+                        }
                     }
                 }
             }

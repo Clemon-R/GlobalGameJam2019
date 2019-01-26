@@ -2,39 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour, IEntity
+public class Monster : StateMachine
 {
-    public GameObject tmpTarget;
-    private string _color;
+    [SerializeField]
+    private float _maxHp = 100;
+
+    private float _currentHp;
+    protected ColorUtil.Colors _color;
 
     public void Hit(GameObject target, string colorCode)
     {
         if (target == null)
             return;
-        IEntity entity = target.GetComponent<IEntity>();
-        if (entity == null)
-            return;
         Debug.Log("[" + name + "] - Attack: "+target.name);
-        entity.TakeHit(this.gameObject, _color);
     }
 
-    public void TakeHit(GameObject caster, string colorCode)
+    public void TakeHit(int damage, ColorUtil.Colors color)
     {
-        if (caster == null)
-            return;
-        Debug.Log("[" + name + "] - Get attacked by: " + caster.name);
+        if (color == _color)
+        {
+            _currentHp -= damage;
+            if (_currentHp <= 0)
+            {
+                Die();
+            }
+        }
+        Debug.Log("[" + name + "] - Get attacked for: " + damage + " damage");
+    }
+
+    protected virtual void Die()
+    {
+        Destroy(gameObject);
     }
 
     //Constuct for the monster
-    public void Start()
+    protected virtual void Start()
     {
         Debug.Log("[" + name + "] - Constructing....");
-        var randomColor = GetRandomColors();
-        _color = randomColor;
-        ColorUtil.ChangeGameObjectColor(this.gameObject, _color);
+        _color = ColorUtil.GetRandomColor();
         Debug.Log("[" + name + "] - Construct the gameobject with the color: " + _color);
         Debug.Log("[" + name + "] - Constructed");
-        Hit(tmpTarget, _color);
+        _currentHp = _maxHp;
     }
 
     private string GetRandomColors()
@@ -42,7 +50,7 @@ public class Monster : MonoBehaviour, IEntity
         return World.Instance.Colors[Random.Range(0, World.Instance.Colors.Length)][0]; ;
     }
 
-    public string GetColor()
+    public ColorUtil.Colors GetColor()
     {
         return _color;
     }

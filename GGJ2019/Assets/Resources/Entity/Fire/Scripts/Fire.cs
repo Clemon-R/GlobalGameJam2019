@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class Fire : MonoBehaviour,IEntity {
+public class Fire : MonoBehaviour
+{
 
     private float actualRange, originalRange;
     private float originalCookie;
