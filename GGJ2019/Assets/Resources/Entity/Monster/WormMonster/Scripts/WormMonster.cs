@@ -51,6 +51,7 @@ public class WormMonster : Monster
                 {
                     fire.TakeHit(_buriedFireDamage);
                 }
+                currentState = WormMonsterStates.Die;
             }
         }
         else if ((WormMonsterStates)currentState == WormMonsterStates.MoveLand)
@@ -65,6 +66,7 @@ public class WormMonster : Monster
             {
                 Fire fire = collision.GetComponent<Fire>();
                 fire.TakeHit(_landFireDamage);
+                currentState = WormMonsterStates.Die;
             }
         }
     }
@@ -162,7 +164,7 @@ public class WormMonster : Monster
 
     void Die_EnterState()
     {
-
+        Destroy(gameObject);
     }
 
     void Die_Update()
@@ -172,6 +174,5 @@ public class WormMonster : Monster
 
     void Die_ExitState()
     {
-        Destroy(gameObject);
     }
 }

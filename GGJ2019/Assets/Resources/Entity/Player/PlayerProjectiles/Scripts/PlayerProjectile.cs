@@ -52,12 +52,14 @@ public class PlayerProjectile : MonoBehaviour
             {
                 monster.TakeHit(_damage, _color);
             }
+            Destroy(gameObject);
         }
         else if (collision.transform.CompareTag("Player"))
         {
             Player player = collision.GetComponent<Player>();
 
             player.ChangeColor(ColorUtil.Mix(GetColor(), player.GetColor()));
+            Destroy(gameObject);
         }
     }
 

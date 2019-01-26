@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private ColorUtil.Colors _baseColor;
+    [SerializeField]
     private ColorUtil.Colors _currentColor;
 
     private bool _temporarilyColorChanged;
