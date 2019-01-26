@@ -6,73 +6,85 @@ using UnityEngine;
 public class MultipleTargetCamera : MonoBehaviour
 {
 
-    public List<Transform> targets;
+    [SerializeField]
+    Transform[] targets;
 
-    public Vector3 offset;
-    public float smoothTime = .5f;
+    [SerializeField]
+    float boundingBoxPadding = 5f;
 
-    public float minZoom = 10f;
-    public float maxZoom = 40f;
-    public float zoomLimiter = 100f;
+    [SerializeField]
+    float minimumOrthographicSize = 6f;
 
-    private Vector3 velocity;
-    private Camera cam;
+    [SerializeField]
+    float zoomSpeed = 2f;
 
-    void Start()
+    Camera camera;
+
+    void Awake()
     {
-        cam = GetComponent<Camera>();
+        camera = GetComponent<Camera>();
+        camera.orthographic = true;
     }
 
     void LateUpdate()
     {
-
-        if (targets.Count == 0)
-            return;
-
-        Move();
-        Zoom();
+        Rect boundingBox = CalculateTargetsBoundingBox();
+        transform.position = CalculateCameraPosition(boundingBox);
+        camera.orthographicSize = CalculateOrthographicSize(boundingBox);
     }
 
-    void Zoom()
+    /// <summary>
+    /// Calculates a bounding box that contains all the targets.
+    /// </summary>
+    /// <returns>A Rect containing all the targets.</returns>
+    Rect CalculateTargetsBoundingBox()
     {
-        float newZoom = Mathf.Lerp(minZoom, maxZoom, GetGreatestDistance() / zoomLimiter);
-        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, newZoom, Time.deltaTime);
-    }
+        float minX = Mathf.Infinity;
+        float maxX = Mathf.NegativeInfinity;
+        float minY = Mathf.Infinity;
+        float maxY = Mathf.NegativeInfinity;
 
-    void Move()
-    {
-        Vector3 centerPoint = GetCenterPoint();
-
-        Vector3 newPositin = centerPoint + offset;
-
-        transform.position = Vector3.SmoothDamp(transform.position, newPositin, ref velocity, smoothTime);
-
-
-    }
-
-    float GetGreatestDistance()
-    {
-        var bounds = new Bounds(targets[0].position, Vector3.zero);
-        for (int i = 0; i < targets.Count; i++)
+        foreach (Transform target in targets)
         {
-            bounds.Encapsulate(targets[i].position);
-        }
-        return bounds.size.x;
-    }
+            Vector3 position = target.position;
 
-
-    Vector3 GetCenterPoint()
-    {
-        if (targets.Count == 1)
-        {
-            return targets[0].position;
+            minX = Mathf.Min(minX, position.x);
+            minY = Mathf.Min(minY, position.y);
+            maxX = Mathf.Max(maxX, position.x);
+            maxY = Mathf.Max(maxY, position.y);
         }
 
-        var bounds = new Bounds(targets[0].position, Vector3.zero);
-        for (int i = 0; i < targets.Count; i++)
-        {
-            bounds.Encapsulate(targets[i].position);
-        }
-        return bounds.center;
+        return Rect.MinMaxRect(minX - boundingBoxPadding, maxY + boundingBoxPadding, maxX + boundingBoxPadding, minY - boundingBoxPadding);
+    }
+
+    /// <summary>
+    /// Calculates a camera position given the a bounding box containing all the targets.
+    /// </summary>
+    /// <param name="boundingBox">A Rect bounding box containg all targets.</param>
+    /// <returns>A Vector3 in the center of the bounding box.</returns>
+    Vector3 CalculateCameraPosition(Rect boundingBox)
+    {
+        Vector2 boundingBoxCenter = boundingBox.center;
+
+        return new Vector3(boundingBoxCenter.x, boundingBoxCenter.y, camera.transform.position.z);
+    }
+
+    /// <summary>
+    /// Calculates a new orthographic size for the camera based on the target bounding box.
+    /// </summary>
+    /// <param name="boundingBox">A Rect bounding box containg all targets.</param>
+    /// <returns>A float for the orthographic size.</returns>
+    float CalculateOrthographicSize(Rect boundingBox)
+    {
+        float orthographicSize = camera.orthographicSize;
+        Vector3 topRight = new Vector3(boundingBox.x + boundingBox.width, boundingBox.y, 0f);
+        Vector3 topRightAsViewport = camera.WorldToViewportPoint(topRight);
+
+        if (topRightAsViewport.x >= topRightAsViewport.y)
+            orthographicSize = Mathf.Abs(boundingBox.width) / camera.aspect / 2f;
+        else
+            orthographicSize = Mathf.Abs(boundingBox.height) / 2f;
+
+        return Mathf.Clamp(Mathf.Lerp(camera.orthographicSize, orthographicSize, Time.deltaTime * zoomSpeed), minimumOrthographicSize, Mathf.Infinity);
     }
 }
