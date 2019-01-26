@@ -57,15 +57,12 @@ public class World : MonoBehaviour
 
     public World()
     {
-        if (_colors.Count < 3)
+        if (_colors == null)
         {
-            Debug.LogError("Impossible to run the game without the minimum colors(3, 'neutre, first, second')");
-            UnityEditor.EditorApplication.isPlaying = false;
+            _colors = new List<string>();
+            _colors.Add("#ffffff");
+            _colors.Add("#0000ff");
+            _colors.Add("#ff0000");
         }
-    }
-
-    //Launch the game
-    public void Start()
-    {
     }
 }
