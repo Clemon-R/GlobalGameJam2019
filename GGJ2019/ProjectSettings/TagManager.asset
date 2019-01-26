@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
+  - Monster
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -14,9 +15,9 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
-  - Buried
-  - Projectile
+  - 
+  - 
+  - 
   - 
   - 
   - 

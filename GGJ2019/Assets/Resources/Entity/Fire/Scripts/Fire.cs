@@ -59,24 +59,12 @@ public class Fire : MonoBehaviour
         AreaChecking(World.Instance.Players);
     }
 
-    public void Hit(GameObject target, string colorCode)
+    public void TakeHit(int damage)
     {
-    }
-
-    public void TakeHit(GameObject caster, string colorCode)
-    {
-        /*Monster monster = caster.GetComponent<Monster>();
-        Debug.Log("[" + name + "] - Get attacked by: " + caster.name + ", color: " + colorCode);
-        if (monster != null)
+        actualHealth -= damage;
+        if (actualHealth <= 0)
         {
-            Destroy(this.gameObject);
-        }*/
-        if (actualHealth > 0)
-            actualHealth -= 10;
-    }
-
-    public string GetColor()
-    {
-        return null;
+            Debug.Log("Game Over");
+        }
     }
 }

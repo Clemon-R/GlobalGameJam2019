@@ -7,8 +7,15 @@ public class PlayerProjectile : MonoBehaviour
     private ColorUtil.Colors _color;
 
     [SerializeField]
+    private float _colorChangeDuration = 2.0f;
+
+    [SerializeField]
+    private int _damage = 30;
+
+    [SerializeField]
     private float _moveSpeed = 20;
 
+    private ColorChanger _colorChanger;
     // Durée de vie ou disparition hors caméra ?
     [SerializeField]
     private float _lifeTime = 5;
@@ -18,8 +25,10 @@ public class PlayerProjectile : MonoBehaviour
 
     private void Start()
     {
+        _colorChanger = GetComponent<ColorChanger>();
         rigidBody = GetComponent<Rigidbody2D>();
         _spawnTime = Time.time;
+        _colorChanger.ChangeColor(_color);
     }
 
     void Update ()
@@ -31,18 +40,26 @@ public class PlayerProjectile : MonoBehaviour
         }
 	}
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (CasterGameObject == null || CasterGameObject == collision.gameObject)
             return;
-        //Si pas entity, plus chiant pour gèrer le perso faudra masse get/set + gèrer monstre et player dans le même fichier
         if (collision.transform.CompareTag("Monster"))
         {
             Monster monster = collision.transform.GetComponent<Monster>();
             if (monster != null)
             {
-                //monster.TakeHit(gameObject, _color);
+                monster.TakeHit(_damage, _color);
             }
+            Destroy(gameObject);
+        }
+        else if (collision.transform.CompareTag("Player"))
+        {
+            Player player = collision.GetComponent<Player>();
+
+            player.ChangeColor(ColorUtil.Mix(GetColor(), player.GetColor()));
+            Destroy(gameObject);
         }
     }
 
@@ -55,7 +72,6 @@ public class PlayerProjectile : MonoBehaviour
     public void SetColor(ColorUtil.Colors color)
     {
         _color = color;
-        ColorUtil.ChangeGameObjectColor(gameObject, _color);
     }
 
     public GameObject CasterGameObject { get; set; }

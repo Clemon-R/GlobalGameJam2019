@@ -10,6 +10,10 @@ public class PlayerMachine : StateMachine
     private PlayerInputController _inputController;
 
     [SerializeField]
+    private float _deathDuration = 2;
+    private float _deathTime;
+
+    [SerializeField]
     private Transform muzzle;
     [SerializeField]
     private GameObject projectilePrefab;
@@ -96,12 +100,16 @@ public class PlayerMachine : StateMachine
 
     void Die_EnterState()
     {
-
+        _deathTime = Time.time;
     }
 
     void Die_Update()
     {
-
+       if (_deathTime + _deathDuration < Time.time)
+        {
+            currentState = PlayerStates.Respawn;
+            return;
+        }
     }
 
     void Die_ExitState()
@@ -111,12 +119,12 @@ public class PlayerMachine : StateMachine
 
     void Respawn_EnterState()
     {
-
+        transform.position = World.Instance.Fire.transform.position;
     }
 
     void Respawn_Update()
     {
-
+        currentState = PlayerStates.Idle;
     }
 
     void Respawn_ExitState()
@@ -132,15 +140,10 @@ public class PlayerMachine : StateMachine
             GameObject obj = Instantiate(projectilePrefab, muzzle.position, transform.rotation);
             PlayerProjectile projectile = obj.GetComponent<PlayerProjectile>();
             Player player = GetComponent<Player>();
-            if (projectile == null || player == null)//Si y a pas la class de projectile alors c'est pas un projectile
+            if (projectile == null || player == null)
                 return;
-            /*IColoredEntity entity = GetComponent<IColoredEntity>();
-            if (entity != null)
-            {
-                projectile.CasterGameObject = this.gameObject;
-                projectile.SetColor(!player.IsOutside() ? entity.GetColor() : "#000000");
-            }*/
-            // Spawn Projectile
+            projectile.CasterGameObject = gameObject;
+            projectile.SetColor(player.GetColor());
             _lastShot = Time.time;
         }
     }
