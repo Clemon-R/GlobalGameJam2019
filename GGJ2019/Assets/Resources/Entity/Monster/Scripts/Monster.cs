@@ -29,26 +29,16 @@ public class Monster : MonoBehaviour, IEntity
     public void Start()
     {
         Debug.Log("[" + name + "] - Constructing....");
-        var randomColors = GetRandomColors();
-        _color = Color.Mix(randomColors);
+        var randomColor = GetRandomColors();
+        _color = randomColor;
         Color.ChangeGameObjectColor(this.gameObject, _color);
         Debug.Log("[" + name + "] - Construct the gameobject with the color: " + _color);
         Debug.Log("[" + name + "] - Constructed");
         Hit(tmpTarget, _color);
     }
 
-    private string[] GetRandomColors()
+    private string GetRandomColors()
     {
-        Debug.Log("[" + name + "] - Max color: " + (World.Instance.Colors.Count - 1));
-        int size = Random.Range(1, World.Instance.Colors.Count);
-        Debug.Log("[" + name + "] - Number of random color: " + size);
-        string[] result = new string[size];
-        for (int i = 0; i < size; i++)
-        {
-            var codeColor = World.Instance.Colors[Random.Range(1, World.Instance.Colors.Count)];
-            Debug.Log("[" + name + "] - Random color found: " + codeColor);
-            result[i] = World.Instance.Colors[Random.Range(1, World.Instance.Colors.Count)];
-        }
-        return result;
+        return World.Instance.Colors[Random.Range(0, World.Instance.Colors.Length)][0]; ;
     }
 }

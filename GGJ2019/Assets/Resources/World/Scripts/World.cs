@@ -25,10 +25,9 @@ public class World : MonoBehaviour
         get { return _players; }
     }
 
-    [SerializeField]
-    private List<string> _colors;
+    private string[][] _colors;
 
-    public List<string> Colors {
+    public string[][] Colors {
         get
         {
             return _colors;
@@ -64,8 +63,27 @@ public class World : MonoBehaviour
         }
     }
 
-    //Launch the game
-    public void Start()
+    public World()
     {
+        if (_colors == null || _colors.Length < 3)
+        {
+            _colors = new string[4][];
+            _colors[0] = new string[3];
+            _colors[0][0] = "#ffffff";
+            _colors[0][1] = "#ffffff"; //Nuance 1
+            _colors[0][2] = "#ffffff"; //Nuance 2
+            _colors[1] = new string[3];
+            _colors[1][0] = "#b40001";
+            _colors[1][1] = "#ff091e";
+            _colors[1][2] = "#ff566b";
+            _colors[2] = new string[3];
+            _colors[2][0] = "#0081ff";
+            _colors[2][1] = "#00d2ff";
+            _colors[2][2] = "#00f9ff";
+            _colors[3] = new string[3];
+            _colors[3][0] = "#67153b";
+            _colors[3][1] = "#b7276d";
+            _colors[3][2] = "#f2495a";
+        }
     }
 }
