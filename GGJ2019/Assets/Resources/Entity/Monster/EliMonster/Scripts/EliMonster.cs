@@ -64,7 +64,7 @@ public class EliMonster : StateMachine
 
     void Die_ExitState()
     {
-
+        Destroy(gameObject);
     }
 
     Transform GetTarget()
