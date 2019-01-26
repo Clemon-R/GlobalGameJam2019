@@ -34,6 +34,16 @@ public class World : MonoBehaviour
         }
     }
 
+    [SerializeField]
+    private Vector2 _maxRadius;
+    public Vector2 MaxRadius
+    {
+        get
+        {
+            return _maxRadius; 
+        }
+    }
+
     private void Awake()
     {
         if (_instance == null)
@@ -86,6 +96,10 @@ public class World : MonoBehaviour
             _colors[3][0] = "#67153B";
             _colors[3][1] = "#b7276d";
             _colors[3][2] = "#f2495a";
+        }
+        if (_maxRadius == null || (_maxRadius.x == 0 && _maxRadius.y == 0))
+        {
+            _maxRadius = new Vector2(24,13);
         }
     }
 }

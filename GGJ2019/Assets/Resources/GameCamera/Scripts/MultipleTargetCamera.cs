@@ -58,8 +58,21 @@ public class MultipleTargetCamera : MonoBehaviour
             maxX = Mathf.Max(maxX, position.x);
             maxY = Mathf.Max(maxY, position.y);
         }
+        minX = minX - boundingBoxPadding;
+        if (Mathf.Abs(minX) > World.Instance.MaxRadius.x)
+            minX = minX < 0 ? -World.Instance.MaxRadius.x : World.Instance.MaxRadius.x;
+        maxX = maxX + boundingBoxPadding;
+        if (Mathf.Abs(maxX) > World.Instance.MaxRadius.x)
+            maxX = maxX < 0 ? -World.Instance.MaxRadius.x : World.Instance.MaxRadius.x;
 
-        return Rect.MinMaxRect(minX - boundingBoxPadding, maxY + boundingBoxPadding, maxX + boundingBoxPadding, minY - boundingBoxPadding);
+
+        minY = minY - boundingBoxPadding;
+        if (Mathf.Abs(minY) > World.Instance.MaxRadius.y)
+            minY = minY < 0 ? -World.Instance.MaxRadius.y : World.Instance.MaxRadius.y;
+        maxY = maxY + boundingBoxPadding;
+        if (Mathf.Abs(maxY) > World.Instance.MaxRadius.y)
+            maxY = maxY < 0 ? -World.Instance.MaxRadius.y : World.Instance.MaxRadius.y;
+        return Rect.MinMaxRect(minX, maxY, maxX, minY);
     }
 
     /// <summary>
