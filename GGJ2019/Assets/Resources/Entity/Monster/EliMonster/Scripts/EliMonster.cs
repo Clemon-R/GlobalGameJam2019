@@ -77,19 +77,21 @@ public class EliMonster : Monster
         {
             for (int i = 0; i < _players.Length; i++)
             {
-                // if color == _players[i].getcolor
-                if (closest == null)
+                if (GetColor() == _players[i].GetColor())
                 {
-                    closest = _players[i].transform;
-                    closestDistance = Vector3.Distance(transform.position, _players[i].transform.position);
-                }
-                else
-                {
-                    float currentDistance = Vector3.Distance(transform.position, _players[i].transform.position);
-                    if (currentDistance < closestDistance)
+                    if (closest == null)
                     {
                         closest = _players[i].transform;
-                        closestDistance = currentDistance;
+                        closestDistance = Vector3.Distance(transform.position, _players[i].transform.position);
+                    }
+                    else
+                    {
+                        float currentDistance = Vector3.Distance(transform.position, _players[i].transform.position);
+                        if (currentDistance < closestDistance)
+                        {
+                            closest = _players[i].transform;
+                            closestDistance = currentDistance;
+                        }
                     }
                 }
             }

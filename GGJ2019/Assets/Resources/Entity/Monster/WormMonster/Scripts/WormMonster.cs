@@ -30,16 +30,7 @@ public class WormMonster : Monster
         currentState = WormMonsterStates.MoveBuried;
     }
 
-<<<<<<< HEAD
     private void OnTriggerEnter2D(Collider2D collision)
-=======
-    private void OnCollisionStay(Collision collision)
-    {
-        Debug.Log("collisioning ");
-    }
-
-    private void OnCollisionEnter(Collision collision)
->>>>>>> 6c253b1cb564fbeae1ce6b6ff22e6d6284ed1392
     {
         Debug.Log("Collided with " + collision.transform.name);
         if ((WormMonsterStates)currentState == WormMonsterStates.MoveBuried && collision.transform.CompareTag("Player"))

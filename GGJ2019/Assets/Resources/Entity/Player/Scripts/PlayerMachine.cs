@@ -134,12 +134,12 @@ public class PlayerMachine : StateMachine
             Player player = GetComponent<Player>();
             if (projectile == null || player == null)//Si y a pas la class de projectile alors c'est pas un projectile
                 return;
-            IEntity entity = GetComponent<IEntity>();
+            /*IColoredEntity entity = GetComponent<IColoredEntity>();
             if (entity != null)
             {
                 projectile.CasterGameObject = this.gameObject;
                 projectile.SetColor(!player.IsOutside() ? entity.GetColor() : "#000000");
-            }
+            }*/
             // Spawn Projectile
             _lastShot = Time.time;
         }
