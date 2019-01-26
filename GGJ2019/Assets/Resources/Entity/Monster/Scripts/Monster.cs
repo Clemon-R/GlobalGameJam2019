@@ -31,7 +31,7 @@ public class Monster : MonoBehaviour, IEntity
         Debug.Log("[" + name + "] - Constructing....");
         var randomColor = GetRandomColors();
         _color = randomColor;
-        Color.ChangeGameObjectColor(this.gameObject, _color);
+        ColorUtil.ChangeGameObjectColor(this.gameObject, _color);
         Debug.Log("[" + name + "] - Construct the gameobject with the color: " + _color);
         Debug.Log("[" + name + "] - Constructed");
         Hit(tmpTarget, _color);

@@ -134,10 +134,17 @@ public class PlayerMachine : StateMachine
         if (_lastShot + _shootRate < Time.time)
         {
             //Debug.Log("Shoot");
-            var obj = Instantiate(projectilePrefab, muzzle.position, transform.rotation);
+            GameObject obj = Instantiate(projectilePrefab, muzzle.position, transform.rotation);
+            PlayerProjectile projectile = obj.GetComponent<PlayerProjectile>();
+            Player player = GetComponent<Player>();
+            if (projectile == null || player == null)//Si y a pas la class de projectile alors c'est pas un projectile
+                return;
             IEntity entity = GetComponent<IEntity>();
             if (entity != null)
-                Color.ChangeGameObjectColor(obj, entity.GetColor());
+            {
+                projectile.CasterGameObject = this.gameObject;
+                projectile.SetColor(!player.IsOutside() ? entity.GetColor() : "#000000");
+            }
             // Spawn Projectile
             _lastShot = Time.time;
         }

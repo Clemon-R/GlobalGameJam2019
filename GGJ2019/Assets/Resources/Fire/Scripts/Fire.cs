@@ -19,7 +19,6 @@ public class Fire : MonoBehaviour {
     private bool CheckIfPlayerInCircle(Vector2 center, float radius, Player player)
     {
         float dist = Vector2.Distance(center, player.gameObject.transform.position);
-        Debug.Log("["+name+"] - Distance with player: "+player.name+", is: "+dist + ", radius: "+ radius);
         return dist <= radius;
     }
 
@@ -29,10 +28,10 @@ public class Fire : MonoBehaviour {
         {
             if (!CheckIfPlayerInCircle(transform.position, lt2.cookieSize / 2, player))
             {
-                player.SetColor("#000000");
+                player.SetIsOutside(true);
             } else
             {
-                player.SetColor(player.GetBaseColor());
+                player.SetIsOutside(false);
             }
         }
 
@@ -52,7 +51,7 @@ public class Fire : MonoBehaviour {
         actualRange1 = ((float)actualHealth * originalRange1) / (float)originalHealth;
         originalCookie2 = ((float)actualHealth * originalRange1) / (float)originalHealth;
         lt1.range = actualRange1;
-        lt1.intensity = 3.05f;
+        lt1.intensity = 30.0f * (originalCookie2 / 10.0f);
         lt2.cookieSize = originalCookie2;
         AreaChecking(World.Instance.Players);
     }

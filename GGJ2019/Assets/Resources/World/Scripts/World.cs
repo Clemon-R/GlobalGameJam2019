@@ -83,7 +83,7 @@ public class World : MonoBehaviour
             _colors[2][1] = "#00d2ff";
             _colors[2][2] = "#00f9ff";
             _colors[3] = new string[3];
-            _colors[3][0] = "#67153b";
+            _colors[3][0] = "#67153B";
             _colors[3][1] = "#b7276d";
             _colors[3][2] = "#f2495a";
         }

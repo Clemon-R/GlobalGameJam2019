@@ -483,6 +483,36 @@ Prefab:
       propertyPath: m_Name
       value: Player_1
       objectReference: {fileID: 0}
+    - target: {fileID: 61906402960362428, guid: 773c1357e39331b44aad1d02408d6a7f,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404366348560356, guid: 773c1357e39331b44aad1d02408d6a7f, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 50618459414932578, guid: 773c1357e39331b44aad1d02408d6a7f,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50618459414932578, guid: 773c1357e39331b44aad1d02408d6a7f,
+        type: 2}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50618459414932578, guid: 773c1357e39331b44aad1d02408d6a7f,
+        type: 2}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114902531624889932, guid: 773c1357e39331b44aad1d02408d6a7f,
+        type: 2}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 1535730519748186, guid: 3f25759bf9b9a7e409aed01f7b15ff1c,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 773c1357e39331b44aad1d02408d6a7f, type: 2}
   m_IsPrefabAsset: 0
@@ -672,6 +702,35 @@ Prefab:
     - target: {fileID: 114741496023295824, guid: 773c1357e39331b44aad1d02408d6a7f,
         type: 2}
       propertyPath: _playerNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 61906402960362428, guid: 773c1357e39331b44aad1d02408d6a7f,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404366348560356, guid: 773c1357e39331b44aad1d02408d6a7f, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 50618459414932578, guid: 773c1357e39331b44aad1d02408d6a7f,
+        type: 2}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50618459414932578, guid: 773c1357e39331b44aad1d02408d6a7f,
+        type: 2}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50618459414932578, guid: 773c1357e39331b44aad1d02408d6a7f,
+        type: 2}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114741496023295824, guid: 773c1357e39331b44aad1d02408d6a7f,
+        type: 2}
+      propertyPath: colorId
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
