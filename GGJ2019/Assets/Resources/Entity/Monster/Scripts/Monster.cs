@@ -41,4 +41,9 @@ public class Monster : MonoBehaviour, IEntity
     {
         return World.Instance.Colors[Random.Range(0, World.Instance.Colors.Length)][0]; ;
     }
+
+    public string GetColor()
+    {
+        return _color;
+    }
 }

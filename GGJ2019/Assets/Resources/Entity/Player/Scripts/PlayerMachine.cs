@@ -123,6 +123,9 @@ public class PlayerMachine : StateMachine
         {
             //Debug.Log("Shoot");
             Instantiate(projectilePrefab, muzzle.position, transform.rotation);
+            IEntity entity = GetComponent<IEntity>();
+            if (entity != null)
+                Color.ChangeGameObjectColor(this.gameObject, entity.GetColor());
             // Spawn Projectile
             _lastShot = Time.time;
         }

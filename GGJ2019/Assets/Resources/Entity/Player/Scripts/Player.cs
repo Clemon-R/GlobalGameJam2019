@@ -60,4 +60,9 @@ public class Player : MonoBehaviour, IEntity
         Debug.Log("[" + name + "] - Construct the gameobject with the color: " + colorCode);
         Debug.Log("[" + name + "] - Constructed");
     }
+
+    public string GetColor()
+    {
+        return _color;
+    }
 }
