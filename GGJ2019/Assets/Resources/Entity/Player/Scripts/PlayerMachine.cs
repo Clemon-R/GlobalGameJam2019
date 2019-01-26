@@ -17,6 +17,7 @@ public class PlayerMachine : StateMachine
     private Transform muzzle;
     [SerializeField]
     private GameObject projectilePrefab;
+
     [SerializeField]
     private float _rotateSpeed = 1500;
     [SerializeField]

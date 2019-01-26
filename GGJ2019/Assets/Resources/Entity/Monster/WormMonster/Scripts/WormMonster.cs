@@ -113,7 +113,6 @@ public class WormMonster : Monster
     void Kicked_EnterState()
     {
         // Play kicked animation
-        Debug.Log("Enter kicked");
         Vector3 direction = _fire.transform.position - transform.position;
         Vector2 perpendicularVector = Vector2.Perpendicular(direction).normalized;
 
@@ -125,7 +124,6 @@ public class WormMonster : Monster
 
     void Kicked_Update()
     {
-        Debug.Log((_kickedStartTime + _kickedLandTime) / Time.time);
         transform.position = Vector3.Lerp(_kickedStartPosition, _kickedLandPosition, Time.time / (_kickedStartTime + _kickedLandTime));
         if (_kickedStartTime + _kickedLandTime < Time.time)
         {
@@ -135,7 +133,6 @@ public class WormMonster : Monster
 
     void Kicked_ExitState()
     {
-        Debug.Log("Kick exit");
     }
 
     void MoveLand_EnterState()
