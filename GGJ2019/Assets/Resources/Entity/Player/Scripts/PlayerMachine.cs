@@ -5,10 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerInputController))]
 public class PlayerMachine : StateMachine
 {
-    public enum PlayerStates { Idle, Move}
+    public enum PlayerStates { Idle, Move, Die, Respawn}
 
     private PlayerInputController _inputController;
 
+    [SerializeField]
+    private Transform muzzle;
+    [SerializeField]
+    private GameObject projectilePrefab;
     [SerializeField]
     private float _rotateSpeed = 1500;
     [SerializeField]
@@ -33,10 +37,7 @@ public class PlayerMachine : StateMachine
 
     protected override void LateGlobalSuperUpdate()
     {
-        if (_rotationInput != Vector3.zero)
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Vector3.forward, _rotationInput), _rotateSpeed * Time.deltaTime);
-        if (_inputController.GetInputs().Shoot)
-            Shoot();
+
     }
 
     void Idle_EnterState()
@@ -46,6 +47,10 @@ public class PlayerMachine : StateMachine
 
     void Idle_Update()
     {
+        if (_rotationInput != Vector3.zero)
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Vector3.forward, _rotationInput), _rotateSpeed * Time.deltaTime);
+        if (_inputController.GetInputs().Shoot)
+            Shoot();
         if (_movementInput != Vector3.zero)
         {
             currentState = PlayerStates.Move;
@@ -65,6 +70,10 @@ public class PlayerMachine : StateMachine
 
     void Move_Update()
     {
+        if (_rotationInput != Vector3.zero)
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Vector3.forward, _rotationInput), _rotateSpeed * Time.deltaTime);
+        if (_inputController.GetInputs().Shoot)
+            Shoot();
         if (_movementInput == Vector3.zero)
         {
             currentState = PlayerStates.Idle;
@@ -78,11 +87,42 @@ public class PlayerMachine : StateMachine
 
     }
 
+    void Die_EnterState()
+    {
+
+    }
+
+    void Die_Update()
+    {
+
+    }
+
+    void Die_ExitState()
+    {
+
+    }
+
+    void Respawn_EnterState()
+    {
+
+    }
+
+    void Respawn_Update()
+    {
+
+    }
+
+    void Respawn_ExitState()
+    {
+
+    }
+
     void Shoot()
     {
         if (_lastShot + _shootRate < Time.time)
         {
             //Debug.Log("Shoot");
+            Instantiate(projectilePrefab, muzzle.position, transform.rotation);
             // Spawn Projectile
             _lastShot = Time.time;
         }

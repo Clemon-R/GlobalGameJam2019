@@ -5,15 +5,38 @@ using UnityEngine;
 
 public class World : MonoBehaviour
 {
+    private static World _instance;
+    private static object _lock = new object();
+
     //Static const
-    public static List<string> COLORS; 
+    [SerializeField]
+    private Player[] _players;
 
-    public List<string> colors = new List<string>();
-
-    //Set const
-    public World()
+    public Player[] Players
     {
-        COLORS = colors;
+        get { return _players; }
+    }
+
+    [SerializeField]
+    public List<string> Colors { private set; get; }
+
+    public static World Instance
+    {
+        get
+        {
+            lock (_lock)
+            {
+                if (_instance == null)
+                {
+                    var holder = new GameObject();
+                    _instance = holder.AddComponent<World>();
+                    _instance._players = FindObjectsOfType<Player>();
+                    holder.name = "World Object";
+
+                }
+                return _instance;
+            }
+        }
     }
 
     //Launch the game

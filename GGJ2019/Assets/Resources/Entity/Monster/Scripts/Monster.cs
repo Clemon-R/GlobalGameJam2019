@@ -18,15 +18,15 @@ public class Monster : Entity {
 
     private string[] GetRandomColors()
     {
-        Debug.Log("[" + name + "] - Max color: " + (World.COLORS.Count - 1));
-        int size = Random.Range(1, World.COLORS.Count);
+        Debug.Log("[" + name + "] - Max color: " + (World.Instance.Colors.Count - 1));
+        int size = Random.Range(1, World.Instance.Colors.Count);
         Debug.Log("[" + name + "] - Number of random color: " + size);
         string[] result = new string[size];
         for (int i = 0; i < size; i++)
         {
-            var codeColor = World.COLORS[Random.Range(1, World.COLORS.Count)];
+            var codeColor = World.Instance.Colors[Random.Range(1, World.Instance.Colors.Count)];
             Debug.Log("[" + name + "] - Random color found: " + codeColor);
-            result[i] = World.COLORS[Random.Range(1, World.COLORS.Count)];
+            result[i] = World.Instance.Colors[Random.Range(1, World.Instance.Colors.Count)];
         }
         return result;
     }
