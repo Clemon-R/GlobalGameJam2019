@@ -42,7 +42,6 @@ public class Player : MonoBehaviour, IEntity
         } else if ((player = caster.GetComponent<Player>()) != null)
         {
             _color = Color.Mix(_baseColor, colorCode);
-            Color.ChangeGameObjectColor(this.gameObject, _color);
         }
     }
 
@@ -56,7 +55,7 @@ public class Player : MonoBehaviour, IEntity
             colorCode = World.Instance.Colors[(int)colorId][0];
         _baseColor = colorCode;
         _color = colorCode;
-        Color.ChangeGameObjectColor(this.gameObject, colorCode);
+        Color.ChangeGameObjectColor(this.gameObject, _baseColor);
         Debug.Log("[" + name + "] - Construct the gameobject with the color: " + colorCode);
         Debug.Log("[" + name + "] - Constructed");
     }
