@@ -18,9 +18,9 @@ public class World : MonoBehaviour
     }
 
     [SerializeField]
-    private List<string> _colors;
+    private string[][] _colors;
 
-    public List<string> Colors {
+    public string[][] Colors {
         get
         {
             return _colors;
@@ -57,12 +57,21 @@ public class World : MonoBehaviour
 
     public World()
     {
-        if (_colors == null)
+        if (_colors == null || _colors.Length < 3)
         {
-            _colors = new List<string>();
-            _colors.Add("#ffffff");
-            _colors.Add("#0000ff");
-            _colors.Add("#ff0000");
+            _colors = new string[3][];
+            _colors[0] = new string[3];
+            _colors[0][0] = "#ffffff";
+            _colors[0][1] = "#ffffff"; //Nuance 1
+            _colors[0][2] = "#ffffff"; //Nuance 2
+            _colors[1] = new string[3];
+            _colors[1][0] = "#0000ff";
+            _colors[1][1] = "#0000ff";
+            _colors[1][2] = "#0000ff";
+            _colors[2] = new string[3];
+            _colors[2][0] = "#ff0000";
+            _colors[2][1] = "#ff0000";
+            _colors[2][2] = "#ff0000";
         }
     }
 }

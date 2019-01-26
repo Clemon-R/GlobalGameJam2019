@@ -44,8 +44,8 @@ public class Player : MonoBehaviour, IEntity
     {
         Debug.Log("[" + name + "] - Constructing....");
         var colorCode = "#000000";
-        if (World.Instance.Colors.Count >= (int)colorId)
-            colorCode = World.Instance.Colors[(int)colorId];
+        if (World.Instance.Colors.Length >= (int)colorId)
+            colorCode = World.Instance.Colors[(int)colorId][0];
         _baseColor = colorCode;
         _color = colorCode;
         Color.ChangeGameObjectColor(this.gameObject, colorCode);
