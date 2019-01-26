@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct Boundary
+{
+    public Vector2 min;
+    public Vector2 max;
+}
 public class World : MonoBehaviour
 {
     private static World _instance;
@@ -35,12 +41,12 @@ public class World : MonoBehaviour
     }
 
     [SerializeField]
-    private Vector2 _maxRadius;
-    public Vector2 MaxRadius
+    private Boundary _boundary;
+    public Boundary Boundary
     {
         get
         {
-            return _maxRadius; 
+            return _boundary; 
         }
     }
 
@@ -97,9 +103,10 @@ public class World : MonoBehaviour
             _colors[3][1] = "#b7276d";
             _colors[3][2] = "#f2495a";
         }
-        if (_maxRadius == null || (_maxRadius.x == 0 && _maxRadius.y == 0))
+        if (Boundary.min.x == 0 && Boundary.max.x == 0)
         {
-            _maxRadius = new Vector2(24,13);
+            _boundary.min = new Vector2(-37, -20);
+            _boundary.max = new Vector2(37, 20);
         }
     }
 }
