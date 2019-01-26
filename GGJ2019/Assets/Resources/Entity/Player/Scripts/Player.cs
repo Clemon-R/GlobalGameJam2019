@@ -17,6 +17,7 @@ public class Player : MonoBehaviour, IEntity
 
     private string _baseColor;
     private string _color;
+    private bool _out;
 
     public void Hit(GameObject target, string colorCode)
     {
@@ -26,7 +27,7 @@ public class Player : MonoBehaviour, IEntity
         if (entity == null)
             return;
         Debug.Log("[" + name + "] - Attack: " + target.name);
-        entity.TakeHit(this.gameObject, _color);
+        //entity.TakeHit(this.gameObject, _color);
     }
 
     public void TakeHit(GameObject caster, string colorCode)
@@ -34,14 +35,15 @@ public class Player : MonoBehaviour, IEntity
         if (caster == null)
             return;
         Monster monster = caster.GetComponent<Monster>();
-        Debug.Log("[" + name + "] - Get attacked by: "+caster.name);
+        Debug.Log("[" + name + "] - Get attacked by: "+caster.name+", color: "+ colorCode);
         Player player;
         if (monster != null)
         {
             Destroy(this.gameObject);
-        } else if ((player = caster.GetComponent<Player>()) != null)
+        } else if ((player = caster.GetComponent<Player>()) != null && colorCode != "#000000")
         {
-            _color = Color.Mix(_baseColor, colorCode);
+            _color = World.Instance.Colors[3][0];
+            ColorUtil.ChangeGameObjectColor(this.gameObject, _color);
         }
     }
 
@@ -55,13 +57,34 @@ public class Player : MonoBehaviour, IEntity
             colorCode = World.Instance.Colors[(int)colorId][0];
         _baseColor = colorCode;
         _color = colorCode;
-        Color.ChangeGameObjectColor(this.gameObject, _baseColor);
+        ColorUtil.ChangeGameObjectColor(this.gameObject, _baseColor);
         Debug.Log("[" + name + "] - Construct the gameobject with the color: " + colorCode);
         Debug.Log("[" + name + "] - Constructed");
+    }
+
+    public bool IsOutside()
+    {
+        return _out;
+    }
+
+    public void SetIsOutside(bool value)
+    {
+        if (value == _out)
+            return;
+        _out = value;
+        if (value)
+            ColorUtil.ChangeGameObjectColor(gameObject, "#000000");
+        else
+            ColorUtil.ChangeGameObjectColor(gameObject, _color);
     }
 
     public string GetColor()
     {
         return _color;
+    }
+
+    public string GetBaseColor()
+    {
+        return _baseColor;
     }
 }

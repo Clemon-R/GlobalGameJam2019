@@ -77,6 +77,10 @@ public class PlayerMachine : StateMachine
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Vector3.forward, _rotationInput), _rotateSpeed * Time.deltaTime);
         if (_inputController.GetInputs().Shoot)
             Shoot();
+        if (Mathf.Abs(transform.position.x + _movementInput.x) > World.Instance.MaxRadius.x)
+            _movementInput.x = 0;
+        if (Mathf.Abs(transform.position.y + _movementInput.y) > World.Instance.MaxRadius.y)
+            _movementInput.y = 0;
         if (_movementInput == Vector3.zero)
         {
             currentState = PlayerStates.Idle;
@@ -125,10 +129,17 @@ public class PlayerMachine : StateMachine
         if (_lastShot + _shootRate < Time.time)
         {
             //Debug.Log("Shoot");
-            var obj = Instantiate(projectilePrefab, muzzle.position, transform.rotation);
+            GameObject obj = Instantiate(projectilePrefab, muzzle.position, transform.rotation);
+            PlayerProjectile projectile = obj.GetComponent<PlayerProjectile>();
+            Player player = GetComponent<Player>();
+            if (projectile == null || player == null)//Si y a pas la class de projectile alors c'est pas un projectile
+                return;
             IEntity entity = GetComponent<IEntity>();
             if (entity != null)
-                Color.ChangeGameObjectColor(obj, entity.GetColor());
+            {
+                projectile.CasterGameObject = this.gameObject;
+                projectile.SetColor(!player.IsOutside() ? entity.GetColor() : "#000000");
+            }
             // Spawn Projectile
             _lastShot = Time.time;
         }

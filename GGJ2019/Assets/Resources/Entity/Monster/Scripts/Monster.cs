@@ -36,8 +36,14 @@ public class Monster : StateMachine, IEntity
     protected virtual void Start()
     {
         Debug.Log("[" + name + "] - Constructing....");
+<<<<<<< HEAD
         _color = GetRandomColors();
         Color.ChangeGameObjectColor(this.gameObject, _color);
+=======
+        var randomColor = GetRandomColors();
+        _color = randomColor;
+        ColorUtil.ChangeGameObjectColor(this.gameObject, _color);
+>>>>>>> 6c253b1cb564fbeae1ce6b6ff22e6d6284ed1392
         Debug.Log("[" + name + "] - Construct the gameobject with the color: " + _color);
         Debug.Log("[" + name + "] - Constructed");
         _currentHp = _maxHp;

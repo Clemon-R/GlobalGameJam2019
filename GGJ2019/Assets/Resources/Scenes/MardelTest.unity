@@ -205,8 +205,13 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+<<<<<<< HEAD
   m_IsActive: 1
 --- !u!108 &532312903
+=======
+  m_IsActive: 0
+--- !u!108 &855804483
+>>>>>>> 6c253b1cb564fbeae1ce6b6ff22e6d6284ed1392
 Light:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -284,8 +289,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actualHealth: 100
+<<<<<<< HEAD
   lt1: {fileID: 1909039485}
   lt2: {fileID: 532312903}
+=======
+  lt1: {fileID: 0}
+  lt2: {fileID: 0}
+>>>>>>> 6c253b1cb564fbeae1ce6b6ff22e6d6284ed1392
 --- !u!4 &855804485
 Transform:
   m_ObjectHideFlags: 0
@@ -406,9 +416,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 1404366348560356, guid: 773c1357e39331b44aad1d02408d6a7f, type: 2}
       propertyPath: m_TagString
       value: Player
+=======
+    - target: {fileID: 61906402960362428, guid: 773c1357e39331b44aad1d02408d6a7f,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+>>>>>>> 6c253b1cb564fbeae1ce6b6ff22e6d6284ed1392
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 773c1357e39331b44aad1d02408d6a7f, type: 2}
@@ -429,8 +446,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
 --- !u!108 &1909039485
 Light:
+=======
+--- !u!61 &1798987796
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1798987795}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!212 &1798987797
+SpriteRenderer:
+>>>>>>> 6c253b1cb564fbeae1ce6b6ff22e6d6284ed1392
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}

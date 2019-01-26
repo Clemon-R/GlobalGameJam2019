@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+<<<<<<< HEAD
 public static class Color
 {
+=======
+public static class ColorUtil {
+>>>>>>> 6c253b1cb564fbeae1ce6b6ff22e6d6284ed1392
     public static void ChangeGameObjectColor(GameObject obj, string colorCode)
     {
         if (obj == null)
@@ -13,9 +17,10 @@ public static class Color
         if (rend == null)
             return;
 
-        Debug.Log("["+obj.name+"] - Change color for: " + colorCode);
+        Debug.Log("[" + obj.name + "] - Change color for: " + colorCode);
         int[] rgb = GetRGB(colorCode);
-        rend.material.SetColor("_Color", new UnityEngine.Color(rgb[0], rgb[1], rgb[2]));
+        
+        rend.material.SetColor("_Color", (new Color(rgb[0], rgb[1], rgb[2])).linear);
     }
 
     public static int[] GetRGB(string colorCode)
