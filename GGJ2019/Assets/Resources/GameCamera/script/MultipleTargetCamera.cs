@@ -5,8 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class MultipleTargetCamera : MonoBehaviour
 {
-
-    [SerializeField]
     Transform[] targets;
 
     [SerializeField]
@@ -19,6 +17,13 @@ public class MultipleTargetCamera : MonoBehaviour
     float zoomSpeed = 2f;
 
     Camera camera;
+
+    private void Start()
+    {
+        targets = new Transform[World.Instance.Players.Length];
+        for (int i = 0; i < World.Instance.Players.Length; i++)
+            targets[i] = World.Instance.Players[i].transform;
+    }
 
     void Awake()
     {
