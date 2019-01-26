@@ -23,8 +23,12 @@ public class PlayerMachine : StateMachine
 
     private Vector3 _movementInput;
     private Vector3 _rotationInput;
+
+    private Rigidbody2D rigidBody;
+
 	void Start ()
     {
+        rigidBody = GetComponent<Rigidbody2D>();
         _inputController = transform.GetComponent<PlayerInputController>();
         currentState = PlayerStates.Idle;
 	}
@@ -70,8 +74,7 @@ public class PlayerMachine : StateMachine
 
     void Move_Update()
     {
-        if (_rotationInput != Vector3.zero)
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Vector3.forward, _rotationInput), _rotateSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Vector3.forward, _rotationInput), _rotateSpeed * Time.deltaTime);
         if (_inputController.GetInputs().Shoot)
             Shoot();
         if (_movementInput == Vector3.zero)
@@ -79,7 +82,7 @@ public class PlayerMachine : StateMachine
             currentState = PlayerStates.Idle;
             return;
         }
-        transform.position += _movementInput * _moveSpeed * Time.deltaTime;
+        rigidBody.MovePosition(transform.position + _movementInput * _moveSpeed * Time.deltaTime);
     }
 
     void Move_ExitState()
@@ -122,7 +125,10 @@ public class PlayerMachine : StateMachine
         if (_lastShot + _shootRate < Time.time)
         {
             //Debug.Log("Shoot");
-            Instantiate(projectilePrefab, muzzle.position, transform.rotation);
+            var obj = Instantiate(projectilePrefab, muzzle.position, transform.rotation);
+            IEntity entity = GetComponent<IEntity>();
+            if (entity != null)
+                Color.ChangeGameObjectColor(obj, entity.GetColor());
             // Spawn Projectile
             _lastShot = Time.time;
         }
