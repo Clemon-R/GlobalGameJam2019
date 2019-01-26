@@ -15,7 +15,7 @@ public class Fire : MonoBehaviour {
 
     // Use this for initialization
 
-    public float newRange
+   /* public float newRange
     {
         get
         {
@@ -23,26 +23,24 @@ public class Fire : MonoBehaviour {
         }
         set
         {
-            if (actualHealth > 0)
-            {
-                actualRange = ((float)actualHealth * originalRange) / (float)originalHealth;
-            }
-            else
-                win = false;
+            actualRange = ((float)actualHealth * originalRange) / (float)originalHealth;
+            if (actualRange <= 0)
+                Console.Write("Game Over FDP");
         }
-    }
+    }*/
 
     void Start()
     {
         lt = GetComponent<Light>();
         originalRange = lt.range;
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
-
         actualRange = ((float)actualHealth * originalRange) / (float)originalHealth;
-        Debug.Log(actualRange);
         lt.range = actualRange;
+        if (actualHealth <= 0)
+            Debug.Log("Game Over fdp");
 	}
 }
