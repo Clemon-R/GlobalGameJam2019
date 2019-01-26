@@ -17,7 +17,6 @@ public class World : MonoBehaviour
         get { return _players; }
     }
 
-    [SerializeField]
     private string[][] _colors;
 
     public string[][] Colors {
