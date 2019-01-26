@@ -13,14 +13,17 @@ public class PlayerProjectile : MonoBehaviour
     private float _lifeTime = 5;
     private float _spawnTime;
 
+    private Rigidbody2D rigidBody;
+
     private void Start()
     {
+        rigidBody = GetComponent<Rigidbody2D>();
         _spawnTime = Time.time;
     }
 
     void Update ()
     {
-        transform.position += transform.up * _moveSpeed * Time.deltaTime;
+        rigidBody.MovePosition(transform.position + transform.up * _moveSpeed * Time.deltaTime);
         if (_spawnTime + _lifeTime < Time.time)
         {
             Destroy(gameObject);

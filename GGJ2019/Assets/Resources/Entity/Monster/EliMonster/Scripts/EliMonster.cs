@@ -6,13 +6,14 @@ public class EliMonster : StateMachine
 {
     public enum EliMonsterStates { Spawn, Move, Die }
     private Player[] _players;
-
+    private Rigidbody2D rigidBody;
 
     [SerializeField]
     private float _moveSpeed;
 
 	void Start ()
     {
+        rigidBody = GetComponent<Rigidbody2D>();
         _players = World.Instance.Players;
         currentState = EliMonsterStates.Spawn;
 	}
@@ -43,7 +44,7 @@ public class EliMonster : StateMachine
         if (target != null)
         {
             Vector3 direction = target.position - transform.position;
-            transform.position += direction.normalized * _moveSpeed * Time.deltaTime;
+            rigidBody.MovePosition(transform.position + direction.normalized * _moveSpeed * Time.deltaTime);
         }
     }
 
@@ -64,7 +65,7 @@ public class EliMonster : StateMachine
 
     void Die_ExitState()
     {
-
+        Destroy(gameObject);
     }
 
     Transform GetTarget()

@@ -40,6 +40,7 @@ public class World : MonoBehaviour
         {
             _instance = this;
             _players = FindObjectsOfType<Player>();
+            _fire = FindObjectOfType<Fire>();
             
         }
     }
@@ -55,6 +56,7 @@ public class World : MonoBehaviour
                     var holder = new GameObject();
                     _instance = holder.AddComponent<World>();
                     _instance._players = FindObjectsOfType<Player>();
+                    _instance._fire = FindObjectOfType<Fire>();
                     holder.name = "World Object";
 
                 }
