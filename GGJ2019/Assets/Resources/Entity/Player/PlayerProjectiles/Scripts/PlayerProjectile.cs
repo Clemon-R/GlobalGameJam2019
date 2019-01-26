@@ -58,7 +58,7 @@ public class PlayerProjectile : MonoBehaviour
         {
             Player player = collision.GetComponent<Player>();
 
-            player.ChangeColor(ColorUtil.Mix(GetColor(), player.GetColor()));
+            player.TemporaryChangeColor(_colorChangeDuration, ColorUtil.Mix(GetColor(), player.GetColor()));
             Destroy(gameObject);
         }
     }

@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
         _colorChanger = GetComponent<ColorChanger>();
         _playerMachine = GetComponent<PlayerMachine>();
         _currentColor = _baseColor;
+        ChangeColor(_baseColor);
     }
 
     public bool IsOutside()
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(_temporarilyColorChanged + " " + _colorChangeDuration + _colorChangeTime + " < " + Time.time);
         if (_temporarilyColorChanged && _colorChangeDuration + _colorChangeTime < Time.time)
         {
             _temporarilyColorChanged = false;
