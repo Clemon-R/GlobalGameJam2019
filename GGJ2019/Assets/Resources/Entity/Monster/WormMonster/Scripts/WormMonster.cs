@@ -25,16 +25,16 @@ public class WormMonster : StateMachine
     {
         rigidBody = GetComponent<Rigidbody2D>();
         _fire = World.Instance.Fire;
-        GetComponent<BoxCollider2D>().isTrigger = true;
+        //GetComponent<BoxCollider2D>().isTrigger = true;
         currentState = WormMonsterStates.MoveBuried;
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionStay(Collision collision)
     {
         Debug.Log("collisioning ");
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter(Collision collision)
     {
         Debug.Log("Collided with " + collision.transform.name);
         if ((WormMonsterStates)currentState == WormMonsterStates.MoveBuried && collision.transform.CompareTag("Player"))
