@@ -46,6 +46,15 @@ public class World : MonoBehaviour
         }
     }
 
+    public World()
+    {
+        if (_colors.Count < 3)
+        {
+            Debug.LogError("Impossible to run the game without the minimum colors(3, 'neutre, first, second')");
+            UnityEditor.EditorApplication.isPlaying = false;
+        }
+    }
+
     //Launch the game
     public void Start()
     {
