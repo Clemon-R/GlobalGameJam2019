@@ -113,9 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
-<<<<<<< HEAD
---- !u!1001 &335123097
-=======
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,50 +550,12 @@ Transform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1037939817
->>>>>>> fd8eb3c4cc5dbd1c0f397d069ad544d83e63d873
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-<<<<<<< HEAD
-    - target: {fileID: 4722980006134594, guid: 25fb27d645aa84f48bb2095d698070f7, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4722980006134594, guid: 25fb27d645aa84f48bb2095d698070f7, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4722980006134594, guid: 25fb27d645aa84f48bb2095d698070f7, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4722980006134594, guid: 25fb27d645aa84f48bb2095d698070f7, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0.40821788
-      objectReference: {fileID: 0}
-    - target: {fileID: 4722980006134594, guid: 25fb27d645aa84f48bb2095d698070f7, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0.23456968
-      objectReference: {fileID: 0}
-    - target: {fileID: 4722980006134594, guid: 25fb27d645aa84f48bb2095d698070f7, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.10938163
-      objectReference: {fileID: 0}
-    - target: {fileID: 4722980006134594, guid: 25fb27d645aa84f48bb2095d698070f7, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.8754261
-      objectReference: {fileID: 0}
-    - target: {fileID: 4722980006134594, guid: 25fb27d645aa84f48bb2095d698070f7, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 25fb27d645aa84f48bb2095d698070f7, type: 2}
-  m_IsPrefabAsset: 0
-=======
     - target: {fileID: 8195094280274988092, guid: bb8616d8e42eada4893e487701aea3f0,
         type: 2}
       propertyPath: m_Tiles.Array.size
@@ -11369,4 +11328,3 @@ Transform:
   m_Father: {fileID: 225808857}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
->>>>>>> fd8eb3c4cc5dbd1c0f397d069ad544d83e63d873
