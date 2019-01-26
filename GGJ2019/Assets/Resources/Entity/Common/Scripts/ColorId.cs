@@ -3,6 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum ColorId {
-    First = 1,
-    Second
+    Red = 1,
+    Blue
 }
