@@ -1,9 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 guid: 6e58cdfaca092fb49a9537d2075f9ae0
 =======
 guid: 4514b88f4dadc094db6eb38f630fde04
 >>>>>>> Stashed changes
+=======
+guid: 8c2c27c2381627d489102c102e2c9074
+>>>>>>> master
 DefaultImporter:
   externalObjects: {}
   userData: 

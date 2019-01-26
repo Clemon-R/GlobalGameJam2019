@@ -122,7 +122,10 @@ public class PlayerMachine : StateMachine
         if (_lastShot + _shootRate < Time.time)
         {
             //Debug.Log("Shoot");
-            Instantiate(projectilePrefab, muzzle.position, transform.rotation);
+            var obj = Instantiate(projectilePrefab, muzzle.position, transform.rotation);
+            IEntity entity = GetComponent<IEntity>();
+            if (entity != null)
+                Color.ChangeGameObjectColor(obj, entity.GetColor());
             // Spawn Projectile
             _lastShot = Time.time;
         }
