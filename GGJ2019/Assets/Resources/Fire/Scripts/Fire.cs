@@ -18,18 +18,21 @@ public class Fire : MonoBehaviour {
 
     private bool CheckIfPlayerInCircle(Vector2 center, float radius, Player player)
     {
-        var tmp = new Vector2(player.gameObject.transform.position.x, player.gameObject.transform.position.z);
-        return Vector2.Distance(center, tmp) <= radius;
+        float dist = Vector2.Distance(center, player.gameObject.transform.position);
+        Debug.Log("["+name+"] - Distance with player: "+player.name+", is: "+dist + ", radius: "+ radius);
+        return dist <= radius;
     }
 
     private void AreaChecking(Player[] players)
     {
         foreach(Player player in players)
         {
-            var tmp = new Vector2(transform.position.x, transform.position.z);
-            if (CheckIfPlayerInCircle(tmp, lt2.cookieSize / 2, player))
+            if (!CheckIfPlayerInCircle(transform.position, lt2.cookieSize / 2, player))
             {
-                Debug.Log("["+name+"] - Detect player: "+player.name);
+                player.SetColor("#000000");
+            } else
+            {
+                player.SetColor(player.GetBaseColor());
             }
         }
 

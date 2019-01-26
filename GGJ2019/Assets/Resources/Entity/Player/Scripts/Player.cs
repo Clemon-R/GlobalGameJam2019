@@ -60,8 +60,19 @@ public class Player : MonoBehaviour, IEntity
         Debug.Log("[" + name + "] - Constructed");
     }
 
+    public void SetColor(string codeColor)
+    {
+        _color = codeColor;
+        Color.ChangeGameObjectColor(gameObject, _color);
+    }
+
     public string GetColor()
     {
         return _color;
+    }
+
+    public string GetBaseColor()
+    {
+        return _baseColor;
     }
 }
