@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : Entity {
+public class Monster : MonoBehaviour {
     private string colorCode;
 
     //Constuct for the monster
