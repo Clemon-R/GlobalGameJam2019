@@ -27,6 +27,15 @@ public class World : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            _players = FindObjectsOfType<Player>();
+        }
+    }
+
     public static World Instance
     {
         get
