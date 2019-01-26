@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Entity
+[RequireComponent(typeof(PlayerMachine))]
+public class Player : MonoBehaviour
 {
     public ColorId colorId;
+    string _color;
+
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         Debug.Log("[" + name + "] - Constructing....");
         var colorCode = "#000000";
         if (World.COLORS.Count >= (int)colorId)
