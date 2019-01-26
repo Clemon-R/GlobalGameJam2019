@@ -18,7 +18,14 @@ public class World : MonoBehaviour
     }
 
     [SerializeField]
-    public List<string> Colors { private set; get; }
+    private List<string> _colors;
+
+    public List<string> Colors {
+        get
+        {
+            return _colors;
+        }
+    }
 
     public static World Instance
     {
