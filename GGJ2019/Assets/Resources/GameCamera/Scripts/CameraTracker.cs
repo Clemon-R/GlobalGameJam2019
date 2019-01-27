@@ -53,8 +53,6 @@ public class CameraTracker : MonoBehaviour {
             camera.orthographicSize = Mathf.Clamp(Mathf.Lerp(camera.orthographicSize, targetedSize, Time.deltaTime * zoomSpeed), minimumOrthographicSize, maximumOrhographicSize);
         else
             targetedSize = camera.orthographicSize;
-        Debug.Log(boundingBox);
-        Debug.Log(boundary);
     }
 
     Rect CalculateTargetsBoundingBox()

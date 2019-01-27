@@ -2,6 +2,7 @@
 using System.Runtime.Serialization;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 [System.Serializable]
 public struct Wave
@@ -22,6 +23,9 @@ public class Spawner : MonoBehaviour
     private GameObject lutinMonsterPrefab;
 
     [SerializeField]
+    private TextMeshProUGUI waveText;
+
+    [SerializeField]
     private List<Wave> _waves = new List<Wave>();
     private int _nextWaveIndex = 0;
 
@@ -30,6 +34,7 @@ public class Spawner : MonoBehaviour
 
     private float _rateDelai = 1.0f;
     private float _rateStartTime = 0;
+    private bool _waveRunning = false;
 
     private void Start()
     {
@@ -76,26 +81,35 @@ public class Spawner : MonoBehaviour
             return;
         if (_rateStartTime + _rateDelai > Time.time)
             return;
+        if (_waveStartTime + _timeBeforeNext - Time.time > 5)
+            waveText.enabled = false;
+        if (!_waveRunning)
+        {
+            _waveRunning = true;
+            waveText.enabled = true;
+            waveText.text = "Wave " + (_nextWaveIndex + 1);
+        }
         Debug.Log("[" + name + "] - Starting spawning mobs...");
         _rateStartTime = Time.time;
         Wave current = _waves[_nextWaveIndex];
-        Debug.Log("[" + name + "] - Eli nbr: " + current.eliNumber);
         if (!SpawnGroupsOfMobs(eliMonsterPrefab, ref current.eliNumber, current.rate) ||
             !SpawnGroupsOfMobs(wormMonsterPrefab, ref current.wormNumber, current.rate) ||
             !SpawnGroupsOfMobs(lutinMonsterPrefab, ref current.lutinNumber, current.rate))
         {
             _waves.RemoveAt(_nextWaveIndex);
-            _waves.Insert(0, current);
+            _waves.Insert(_nextWaveIndex, current);
             return;
         }
         Debug.Log("[" + name + "] - Preparing next wave");
         _nextWaveIndex++;
         _waveStartTime = Time.time;
+        _waveRunning = false;
+        waveText.enabled = false;
     }
 
     private void Update()
     {
-        if (_waveStartTime + _timeBeforeNext > Time.time)
+        if (_waveStartTime + _timeBeforeNext < Time.time)
             StartNextWave();
     }
 }
