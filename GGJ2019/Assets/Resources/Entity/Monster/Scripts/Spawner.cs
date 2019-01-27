@@ -11,7 +11,7 @@ public struct Wave
     public int wormNumber;
     public int lutinNumber;
 
-    public int rate;
+    public float rate;
 }
 public class Spawner : MonoBehaviour
 {
@@ -38,48 +38,54 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        _waveStartTime = Time.time;
-        //StartNextWave();
+        _waveStartTime = Time.time + _timeBeforeNext / 2f;
     }
 
-    private bool SpawnGroupsOfMobs(GameObject prefab, ref int nbr, int rate)
+    private bool SpawnGroupsOfMobs(GameObject prefab, ref int nbr, float rate)
     {
         if (prefab == null)
             return true;
-        int tmp = 0;
-
         for (int i = 0; i < nbr; i++)
         {
-            tmp++;
             int tmpX, tmpY;
             if (Random.Range(0, 2) == 0)
             {
-                tmpX = Random.Range(0, 2) == 0 ? (int)World.Instance.Boundary.min.x : (int)World.Instance.Boundary.max.x;
-                tmpY = Random.Range((int)World.Instance.Boundary.min.y, (int)World.Instance.Boundary.max.y);
+                tmpX = Random.Range(0, 2) == 0 ? (int)World.Instance.Boundary.min.x - 1 : (int)World.Instance.Boundary.max.x + 1;
+                tmpY = Random.Range((int)World.Instance.Boundary.min.y - 1, (int)World.Instance.Boundary.max.y + 2);
             }
             else
             {
-                tmpY = Random.Range(0, 2) == 0 ? (int)World.Instance.Boundary.min.y : (int)World.Instance.Boundary.max.y;
-                tmpX = Random.Range((int)World.Instance.Boundary.min.x, (int)World.Instance.Boundary.max.x);
+                tmpY = Random.Range(0, 2) == 0 ? (int)World.Instance.Boundary.min.y - 1 : (int)World.Instance.Boundary.max.y + 1;
+                tmpX = Random.Range((int)World.Instance.Boundary.min.x - 1, (int)World.Instance.Boundary.max.x + 2);
             }
             
             GameObject obj = Instantiate(prefab, new Vector3(tmpX, tmpY, 0), prefab.transform.rotation);
             Debug.Log("[" + name + "] - Spawning mob: "+ obj.name);
-            if (tmp >= rate)
-            {
-                nbr -= tmp;
-                return false;
-            }
+            nbr--;
+            return false;
         }
         nbr = 0;
         return true;
+    }
+
+    private int GetRandomMobToSpawnId(Wave current)
+    {
+        List<int> availables = new List<int>();
+        if (current.eliNumber > 0)
+            availables.Add(0);
+        if (current.wormNumber > 0)
+            availables.Add(1);
+        if (current.lutinNumber > 0)
+            availables.Add(2);
+        return availables.Count > 0 ? availables[Random.Range(0, availables.Count)] : -1;
     }
 
     private void StartNextWave()
     {
         if (_nextWaveIndex >= _waves.Count)
             return;
-        if (_rateStartTime + _rateDelai > Time.time)
+        Wave current = _waves[_nextWaveIndex];
+        if (_rateStartTime + current.rate > Time.time)
             return;
         if (_waveStartTime + _timeBeforeNext - Time.time > 5)
             waveText.enabled = false;
@@ -91,14 +97,28 @@ public class Spawner : MonoBehaviour
         }
         Debug.Log("[" + name + "] - Starting spawning mobs...");
         _rateStartTime = Time.time;
-        Wave current = _waves[_nextWaveIndex];
-        if (!SpawnGroupsOfMobs(eliMonsterPrefab, ref current.eliNumber, current.rate) ||
-            !SpawnGroupsOfMobs(wormMonsterPrefab, ref current.wormNumber, current.rate) ||
-            !SpawnGroupsOfMobs(lutinMonsterPrefab, ref current.lutinNumber, current.rate))
+        int id = GetRandomMobToSpawnId(current);
+        if (id != -1)
         {
-            _waves.RemoveAt(_nextWaveIndex);
-            _waves.Insert(_nextWaveIndex, current);
-            return;
+            bool result = true;
+            switch (id)
+            {
+                case 0:
+                    result = SpawnGroupsOfMobs(eliMonsterPrefab, ref current.eliNumber, current.rate);
+                    break;
+                case 1:
+                    result = SpawnGroupsOfMobs(wormMonsterPrefab, ref current.wormNumber, current.rate);
+                    break;
+                case 2:
+                    result = SpawnGroupsOfMobs(lutinMonsterPrefab, ref current.lutinNumber, current.rate);
+                    break;
+            }
+            if (!result)
+            {
+                _waves.RemoveAt(_nextWaveIndex);
+                _waves.Insert(_nextWaveIndex, current);
+                return;
+            }
         }
         Debug.Log("[" + name + "] - Preparing next wave");
         _nextWaveIndex++;
