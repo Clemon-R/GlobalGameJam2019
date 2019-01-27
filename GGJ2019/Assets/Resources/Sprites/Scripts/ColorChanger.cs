@@ -26,12 +26,14 @@ public class ColorChanger : MonoBehaviour
     public void ChangeColor(ColorUtil.Colors color)
     {
         Sprite sprite;
+        Debug.Log("Setting color: " + color);
         _sprites.TryGetValue(color, out sprite);
         if (sprite != null)
         {
             SpriteRenderer renderer = GetComponent<SpriteRenderer>();
             if (renderer != null)
             {
+                Debug.Log("Skin found !");
                 renderer.sprite = Instantiate(sprite);
             }
         }

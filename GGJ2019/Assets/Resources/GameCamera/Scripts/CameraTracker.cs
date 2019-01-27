@@ -18,7 +18,6 @@ public class CameraTracker : MonoBehaviour {
 
     Camera camera;
     float targetedSize;
-    bool refresh = false;
 
     private void Start()
     {
@@ -31,28 +30,29 @@ public class CameraTracker : MonoBehaviour {
     {
         camera = GetComponent<Camera>();
         camera.orthographic = true;
-        targetedSize = Mathf.Round(camera.orthographicSize);
+        targetedSize = camera.orthographicSize;
     }
 
     void LateUpdate()
     {
         targetedSize = camera.orthographicSize;
-        Rect boundingBox = CalculateTargetsBoundingBox();
+        Rect targetsBoundary = CalculateTargetsBoundingBox();
+        Rect cameraBoundary = GetCameraBoundary();
+        World.Instance.Boundary = cameraBoundary;
+        if (cameraBoundary.min.y - targetsBoundary.min.y < -boundingBoxPadding && cameraBoundary.max.y - targetsBoundary.max.y > boundingBoxPadding && cameraBoundary.min.x - targetsBoundary.min.x < -boundingBoxPadding && cameraBoundary.max.x - targetsBoundary.max.x > boundingBoxPadding)
+            targetedSize -= 1;
+        else if (cameraBoundary.max.x - targetsBoundary.max.x < 2 || cameraBoundary.min.x - targetsBoundary.min.x > -2 || cameraBoundary.max.y - targetsBoundary.max.y < 2 || cameraBoundary.min.y - targetsBoundary.min.y > -2)
+            targetedSize += 1;
+        
+        if (targetedSize != camera.orthographicSize && targetedSize <= maximumOrhographicSize)
+            camera.orthographicSize = Mathf.Clamp(Mathf.Lerp(camera.orthographicSize, targetedSize, Time.deltaTime * zoomSpeed), minimumOrthographicSize, maximumOrhographicSize);
+    }
+
+    Rect GetCameraBoundary()
+    {
         Vector3 v3Pos = camera.ViewportToWorldPoint(Vector3.zero);
         Rect boundary = Rect.MinMaxRect(v3Pos.x, v3Pos.y, v3Pos.x + camera.orthographicSize * camera.aspect * 2f, v3Pos.y + camera.orthographicSize * 2f);
-        World.Instance.Boundary = boundary;
-        float change = camera.orthographicSize;
-        if (boundary.min.y - boundingBox.min.y < -boundingBoxPadding && boundary.max.y - boundingBox.max.y > boundingBoxPadding && boundary.min.x - boundingBox.min.x < -boundingBoxPadding && boundary.max.x - boundingBox.max.x > boundingBoxPadding)
-        {
-            targetedSize -= 1;
-        }else if (boundary.max.x - boundingBox.max.x < 2 || boundary.min.x - boundingBox.min.x > -2 || boundary.max.y - boundingBox.max.y < 2 || boundary.min.y - boundingBox.min.y > -2)
-        {
-            targetedSize += 1;
-        }
-        if (targetedSize <= maximumOrhographicSize)
-            camera.orthographicSize = Mathf.Clamp(Mathf.Lerp(camera.orthographicSize, targetedSize, Time.deltaTime * zoomSpeed), minimumOrthographicSize, maximumOrhographicSize);
-        else
-            targetedSize = camera.orthographicSize;
+        return boundary;
     }
 
     Rect CalculateTargetsBoundingBox()
