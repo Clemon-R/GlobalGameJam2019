@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1170856755002628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.33, y: 0.31, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -124,10 +124,10 @@ MonoBehaviour:
   _landFireDamage: 20
   _buriedMoveSpeed: 4
   _landMoveSpeed: 3
-  _kickedOffset: 3
-  _kickedLandTime: 2
-  _kickedRotateSpeed: 180
-  _kickedMaxScale: {x: 1.5, y: 1.5, z: 1}
+  _kickedOffset: 2
+  _kickedLandTime: 1
+  _kickedRotateSpeed: 360
+  _kickedMaxScale: {x: 2, y: 2, z: 1}
 --- !u!212 &212255062350513234
 SpriteRenderer:
   m_ObjectHideFlags: 1

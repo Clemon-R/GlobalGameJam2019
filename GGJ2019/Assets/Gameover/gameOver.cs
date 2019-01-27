@@ -19,12 +19,12 @@ public class gameOver : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (fireHealth.actualHealth <= 0)
+		/*if (fireHealth.actualHealth <= 0)
         {
             Time.timeScale = 0f;
             gameOverTxt.enabled = true;
             if (Input.GetButton("Submit"))
                SceneManager.LoadScene(scene.name);
-        }
+        }*/
 	}
 }
