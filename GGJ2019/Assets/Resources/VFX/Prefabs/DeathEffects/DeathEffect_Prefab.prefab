@@ -21,8 +21,9 @@ GameObject:
   - component: {fileID: 4724674142019692}
   - component: {fileID: 212363770465087866}
   - component: {fileID: 95866954926400534}
+  - component: {fileID: 114401307832013384}
   m_Layer: 0
-  m_Name: DeathEffect_BluePrefab
+  m_Name: DeathEffect_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,6 +60,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114401307832013384
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1676812715408598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e358e9a2365a14abad7c58cc26511d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeToDestroy: 1
 --- !u!212 &212363770465087866
 SpriteRenderer:
   m_ObjectHideFlags: 1

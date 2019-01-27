@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class Player : MonoBehaviour
     }
 
     [SerializeField]
+    private MuzzleFlash _muzzleFlash;
+    [SerializeField]
     private ColorUtil.Colors _baseColor;
     [SerializeField]
     private ColorUtil.Colors _currentColor;
@@ -23,6 +26,8 @@ public class Player : MonoBehaviour
 
     private ColorChanger _colorChanger;
     private PlayerMachine _playerMachine;
+
+    public bool Dead { get; set; }
 
     private bool _out;
 
@@ -37,6 +42,11 @@ public class Player : MonoBehaviour
     public bool IsOutside()
     {
         return _out;
+    }
+
+    public void SetPlayerNumber(int number)
+    {
+        _playerNumber = number;
     }
 
     private void Update()
@@ -64,18 +74,26 @@ public class Player : MonoBehaviour
             ChangeColor(_baseColor);
     }
 
+    public void SetBaseColor(ColorUtil.Colors color)
+    {
+        _baseColor = color;
+    }
+
     public void ChangeColor(ColorUtil.Colors newColor)
     {
         _currentColor = newColor;
         _colorChanger.ChangeColor(_currentColor);
         Animator animator = GetComponent<Animator>();
 
-        animator.SetBool("IsRed", false);
-        animator.SetBool("IsBlue", false);
-        animator.SetBool("IsPurple", false);
-
-        string booleanColor = newColor == ColorUtil.Colors.BLUE ? "IsBlue" : newColor == ColorUtil.Colors.RED ? "IsRed" : "IsPurple";
-        animator.SetBool(booleanColor, true);
+        string color = _currentColor == ColorUtil.Colors.GREY ? "BLUE" : _currentColor.ToString();
+        foreach(string item in Enum.GetNames(typeof(ColorUtil.Colors)))
+        {
+            if (item != color)
+                animator.SetBool(item, false);
+            else
+                animator.SetBool(item, true);
+        }
+        _muzzleFlash.ChangeColor(_currentColor);
     }
 
     public void TemporaryChangeColor(float duration, ColorUtil.Colors newColor)

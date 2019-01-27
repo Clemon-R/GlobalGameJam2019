@@ -69,7 +69,7 @@ public class Blob : Monster
 
     void Move_EnterState()
     {
-
+        GetComponent<Animator>().SetBool("Move", true);
     }
 
     void Move_Update()
@@ -88,6 +88,11 @@ public class Blob : Monster
                 rigidBody.MovePosition(transform.position + direction.normalized * _moveSpeed * Time.deltaTime);
             }
         }
+    }
+
+    void Move_ExitState()
+    {
+        GetComponent<Animator>().SetBool("Move", false);
     }
 
     void FireJumpPause_EnterState()
@@ -128,7 +133,7 @@ public class Blob : Monster
 
     void Die_EnterState()
     {
-
+        Die();
     }
 
     void Die_Update()

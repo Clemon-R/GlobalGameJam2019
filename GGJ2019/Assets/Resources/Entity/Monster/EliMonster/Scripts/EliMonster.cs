@@ -8,6 +8,7 @@ public class EliMonster : Monster
     private Player[] _players;
     private Rigidbody2D rigidBody;
 
+    private Transform greyTarget;
     [SerializeField]
     private float _moveSpeed = 5;
 
@@ -82,16 +83,49 @@ public class EliMonster : Monster
         Destroy(gameObject);
     }
 
+    List<ColorUtil.Colors> GetTargetColors()
+    {
+        List<ColorUtil.Colors> targetColors = new List<ColorUtil.Colors>();
+        switch (GetColor())
+        {
+            case ColorUtil.Colors.RED:
+                targetColors.Add(ColorUtil.Colors.BLUE);
+                break;
+            case ColorUtil.Colors.BLUE:
+                targetColors.Add(ColorUtil.Colors.RED);
+                break;
+            case ColorUtil.Colors.GREY:
+            case ColorUtil.Colors.PURPLE:
+                targetColors.Add(ColorUtil.Colors.RED);
+                targetColors.Add(ColorUtil.Colors.BLUE);
+                targetColors.Add(ColorUtil.Colors.PURPLE);
+                targetColors.Add(ColorUtil.Colors.GREY);
+                break;
+        }
+        return targetColors;
+    }
+
     Transform GetTarget()
     {
         Transform closest = null;
         float closestDistance = 0;
+        List<ColorUtil.Colors> targetColors = GetTargetColors();
 
         if (_players != null)
         {
+            if (GetColor() == ColorUtil.Colors.GREY)
+            {
+                if (greyTarget == null || greyTarget.GetComponent<Player>().Dead)
+                {
+                    greyTarget = _players[Random.Range(0, _players.Length)].transform;
+                }
+                return greyTarget;
+            }
             for (int i = 0; i < _players.Length; i++)
             {
-                if (GetColor() == _players[i].GetColor())
+                if (_players[i].Dead)
+                    continue;
+                if (targetColors.Contains(_players[i].GetColor()))
                 {
                     if (closest == null)
                     {

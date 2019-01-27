@@ -20,19 +20,19 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: IsRed
+  - m_Name: RED
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: IsPurple
+  - m_Name: PURPLE
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: IsBlue
+  - m_Name: BLUE
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -86,7 +86,7 @@ AnimatorStateTransition:
     m_ConditionEvent: IsIdle
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: IsBlue
+    m_ConditionEvent: BLUE
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102635326184277916}
@@ -152,7 +152,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsBlue
+    m_ConditionEvent: BLUE
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsWalk
@@ -179,7 +179,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsRed
+    m_ConditionEvent: RED
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102606836254331548}
@@ -203,7 +203,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsBlue
+    m_ConditionEvent: BLUE
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsWalk
@@ -233,7 +233,7 @@ AnimatorStateTransition:
     m_ConditionEvent: IsWalk
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: IsRed
+    m_ConditionEvent: RED
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102782351140357526}
@@ -257,7 +257,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsBlue
+    m_ConditionEvent: BLUE
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102635326184277916}
@@ -284,7 +284,7 @@ AnimatorStateTransition:
     m_ConditionEvent: IsIdle
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: IsRed
+    m_ConditionEvent: RED
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102606836254331548}
@@ -311,7 +311,7 @@ AnimatorStateTransition:
     m_ConditionEvent: IsWalk
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: IsBlue
+    m_ConditionEvent: BLUE
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102768593305823112}
@@ -335,7 +335,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsPurple
+    m_ConditionEvent: PURPLE
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102282831838342266}
@@ -362,7 +362,7 @@ AnimatorStateTransition:
     m_ConditionEvent: IsWalk
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: IsRed
+    m_ConditionEvent: RED
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102782351140357526}
@@ -386,7 +386,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsPurple
+    m_ConditionEvent: PURPLE
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsIdle
@@ -416,7 +416,7 @@ AnimatorStateTransition:
     m_ConditionEvent: IsIdle
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: IsPurple
+    m_ConditionEvent: PURPLE
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102282831838342266}
@@ -443,7 +443,7 @@ AnimatorStateTransition:
     m_ConditionEvent: IsIdle
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: IsRed
+    m_ConditionEvent: RED
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102606836254331548}
@@ -467,7 +467,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsBlue
+    m_ConditionEvent: BLUE
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsIdle
@@ -497,7 +497,7 @@ AnimatorStateTransition:
     m_ConditionEvent: IsWalk
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: IsPurple
+    m_ConditionEvent: PURPLE
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102262486227950572}
@@ -524,7 +524,7 @@ AnimatorStateTransition:
     m_ConditionEvent: IsWalk
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: IsPurple
+    m_ConditionEvent: PURPLE
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102262486227950572}
@@ -548,7 +548,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsPurple
+    m_ConditionEvent: PURPLE
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsWalk
@@ -575,7 +575,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsBlue
+    m_ConditionEvent: BLUE
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsIdle
@@ -605,7 +605,7 @@ AnimatorStateTransition:
     m_ConditionEvent: IsWalk
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: IsRed
+    m_ConditionEvent: RED
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102782351140357526}
@@ -629,7 +629,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: IsPurple
+    m_ConditionEvent: PURPLE
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: IsIdle
@@ -659,7 +659,7 @@ AnimatorStateTransition:
     m_ConditionEvent: IsIdle
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: IsRed
+    m_ConditionEvent: RED
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102606836254331548}
@@ -710,7 +710,7 @@ AnimatorStateTransition:
     m_ConditionEvent: IsIdle
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: IsPurple
+    m_ConditionEvent: PURPLE
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102282831838342266}
@@ -785,7 +785,7 @@ AnimatorStateTransition:
     m_ConditionEvent: IsWalk
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: IsPurple
+    m_ConditionEvent: PURPLE
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102262486227950572}

@@ -16,6 +16,8 @@ public class PlayerMachine : StateMachine
     [SerializeField]
     private Transform _muzzle;
     [SerializeField]
+    private MuzzleFlash _muzzleFlash;
+    [SerializeField]
     private GameObject projectilePrefab;
 
     [SerializeField]
@@ -33,13 +35,16 @@ public class PlayerMachine : StateMachine
 
     [SerializeField]
     private Transform _gun;
-
     [SerializeField]
     private Vector3 _muzzleBasePosition;
     [SerializeField]
     private Vector3 _muzzleFlippedPosition;
+
+    private GameObject _deathEffectPrefab;
+
 	void Start ()
     {
+        _deathEffectPrefab = (GameObject)Resources.Load("VFX/Prefabs/DeathEffects/DeathEffect_Prefab");
         rigidBody = GetComponent<Rigidbody2D>();
         _inputController = transform.GetComponent<PlayerInputController>();
         currentState = PlayerStates.Idle;
@@ -107,6 +112,18 @@ public class PlayerMachine : StateMachine
 
     void Die_EnterState()
     {
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        GameObject go = Instantiate(_deathEffectPrefab, transform.position, Quaternion.identity);
+        if (go != null)
+        {
+            go.GetComponent<Animator>().SetBool(GetComponent<Player>().GetColor().ToString(), true);
+        }
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+        GetComponent<Player>().Dead = true;
         _deathTime = Time.time;
     }
 
@@ -159,6 +176,7 @@ public class PlayerMachine : StateMachine
 
     void Respawn_EnterState()
     {
+        GetComponent<Player>().Dead = false;
         transform.position = World.Instance.Fire.transform.position;
     }
 
@@ -169,11 +187,17 @@ public class PlayerMachine : StateMachine
 
     void Respawn_ExitState()
     {
-
+        GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<Collider2D>().enabled = true;
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(true);
+        }
     }
 
     void Shoot()
     {
+        _muzzleFlash.Trigger();
         if (_lastShot + _shootRate < Time.time)
         {
             //Debug.Log("Shoot");

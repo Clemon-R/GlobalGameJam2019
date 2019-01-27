@@ -41,9 +41,7 @@ public class World : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
-            _players = FindObjectsOfType<Player>();
-            _fire = FindObjectOfType<Fire>();
-            
+            InitGame();
         }
     }
 
@@ -57,13 +55,62 @@ public class World : MonoBehaviour
                 {
                     var holder = new GameObject();
                     _instance = holder.AddComponent<World>();
-                    _instance._players = FindObjectsOfType<Player>();
-                    _instance._fire = FindObjectOfType<Fire>();
                     holder.name = "World Object";
-
+                    InitGame();
                 }
                 return _instance;
             }
+        }
+    }
+
+    private static void InitGame()
+    {
+        _instance._players = FindObjectsOfType<Player>();
+        _instance._fire = FindObjectOfType<Fire>();
+        if (_instance._fire == null)
+        {
+            GameObject go = (GameObject)Instantiate(Resources.Load("Entity/Fire/Prefabs/Fire"), Vector3.zero, Quaternion.identity);
+            _instance._fire = go.GetComponent<Fire>();
+        }
+        if (_instance._players == null)
+        {
+            _instance._players = new Player[4];
+            for (int i = 0; i < 4; i++)
+            {
+                GameObject go = (GameObject)Instantiate(Resources.Load("Entity/Player/Prefabs/Player"), Vector3.zero, Quaternion.identity);
+                _instance._players[i] = go.GetComponent<Player>();
+            }
+        }
+        else if (_instance._players.Length != 4)
+        {
+            Player[] players = new Player[4];
+            for (int i = 0; i < 4; i++)
+            {
+                if (_instance._players.Length > i)
+                {
+                    players[i] = _instance._players[i];
+                }
+                else
+                {
+                    GameObject go = (GameObject)Instantiate(Resources.Load("Entity/Player/Prefabs/Player"), Vector3.zero, Quaternion.identity);
+                    players[i] = go.GetComponent<Player>();
+                }
+            }
+            _instance._players = players;
+        }
+        float distFromFire = 4;
+        Vector3[] spawnPositions = new Vector3[]
+        {
+            new Vector3(_instance._fire.transform.position.x - distFromFire, _instance._fire.transform.position.y + distFromFire, 0),
+            new Vector3(_instance._fire.transform.position.x + distFromFire, _instance._fire.transform.position.y + distFromFire, 0),
+            new Vector3(_instance._fire.transform.position.x - distFromFire, _instance._fire.transform.position.y - distFromFire, 0),
+            new Vector3(_instance._fire.transform.position.x + distFromFire, _instance._fire.transform.position.y - distFromFire, 0),
+        };
+        for (int i = 0; i < _instance._players.Length; i++)
+        {
+            _instance._players[i].SetPlayerNumber(i + 1);
+            _instance._players[i].SetBaseColor(i == 1 || i == 3 ? ColorUtil.Colors.BLUE : ColorUtil.Colors.RED);
+            _instance._players[i].transform.position = spawnPositions[i];
         }
     }
 

@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0ba1d2c4e18ad428426b8be175bd57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _blinkDuration: 0.1
   _maxHp: 100
   _buriedFireDamage: 10
   _landFireDamage: 20
@@ -140,7 +141,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58f6831924710cf419891860ea7585f9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

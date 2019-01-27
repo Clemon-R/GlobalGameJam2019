@@ -5,10 +5,12 @@ using UnityEngine;
 public class Monster : StateMachine
 {
     [SerializeField]
+    private float _blinkDuration = 0.06f;
+
+    [SerializeField]
     private float _maxHp = 100;
 
     private float _currentHp;
-    [SerializeField]
     protected ColorUtil.Colors _color;
 
     public void Hit(GameObject target, string colorCode)
@@ -22,6 +24,7 @@ public class Monster : StateMachine
     {
         if (color == _color)
         {
+            StartCoroutine("FlashWhite");
             _currentHp -= damage;
             if (_currentHp <= 0)
             {
@@ -29,6 +32,16 @@ public class Monster : StateMachine
             }
         }
         Debug.Log("[" + name + "] - Get attacked for: " + damage + " damage");
+    }
+
+    IEnumerator FlashWhite()
+    {
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        renderer.material.SetFloat("_FlashAmount", 0.8f);
+        float start = Time.time;
+        while (start + _blinkDuration > Time.time)
+            yield return null;
+        renderer.material.SetFloat("_FlashAmount", 0);
     }
 
     protected virtual void Die()
