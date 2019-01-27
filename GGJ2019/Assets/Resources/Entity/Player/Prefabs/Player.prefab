@@ -409,6 +409,7 @@ MonoBehaviour:
   _muzzleFlash: {fileID: 114429001237328450}
   _baseColor: 1
   _currentColor: 0
+  _gui: {fileID: 114398494883407664}
 --- !u!114 &114857572015502524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -470,13 +471,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteColorsList:
-  - _color: 0
-    _sprite: {fileID: 21300000, guid: 4ffb55849af5eb747a9024de21c1c174, type: 3}
   - _color: 1
+    _sprite: {fileID: 21300000, guid: 4ffb55849af5eb747a9024de21c1c174, type: 3}
+  - _color: 0
     _sprite: {fileID: 21300000, guid: 79588d447b01e2a4dbf5978258b6f807, type: 3}
   - _color: 2
-    _sprite: {fileID: 21300000, guid: 4ffb55849af5eb747a9024de21c1c174, type: 3}
-  - _color: 3
     _sprite: {fileID: 21300000, guid: bef456154dba3d144bd4907ff84b0e63, type: 3}
 --- !u!114 &114982393858854052
 MonoBehaviour:
@@ -608,7 +607,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 58f6831924710cf419891860ea7585f9, type: 2}
+  - {fileID: 2100000, guid: af02582e2b4eb8b4ea5d9c376a8ebcca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

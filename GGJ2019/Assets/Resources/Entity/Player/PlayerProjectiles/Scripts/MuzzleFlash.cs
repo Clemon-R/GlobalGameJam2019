@@ -51,32 +51,8 @@ public class MuzzleFlash : MonoBehaviour
 
     public void ChangeColor(ColorUtil.Colors color)
     {
-        switch (color)
-        {
-            case ColorUtil.Colors.GREY:
-                if (_renderer != null)
-                    _renderer.color = Color.gray;
-                else
-                    _color = color;
-                break;
-            case ColorUtil.Colors.RED:
-                if (_renderer != null)
-                    _renderer.color = Color.red;
-                else
-                    _color = color;
-                break;
-            case ColorUtil.Colors.BLUE:
-                if (_renderer != null)
-                    _renderer.color = Color.blue;
-                else
-                    _color = color;
-                break;
-            case ColorUtil.Colors.PURPLE:
-                if (_renderer != null)
-                    _renderer.color = new Color(138, 43, 226);
-                else
-                    _color = color;
-                break;
-        }
+        if (_renderer != null)
+            _renderer.color = ColorUtil.UnityColorFromColorEnum(color);
+        _color = color;
     }
 }
