@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 50344934690913954}
   - component: {fileID: 61553581043171954}
   - component: {fileID: 95944946351349330}
+  - component: {fileID: 114879316841638636}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -57,6 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4010261065680424}
   - component: {fileID: 212130076917923900}
+  - component: {fileID: 114966427987553640}
   m_Layer: 0
   m_Name: Direction
   m_TagString: Untagged
@@ -71,7 +73,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1706361744161462}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.003, y: 0.096, z: 0}
+  m_LocalPosition: {x: -0.0113, y: 0.0182, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4630222513882022}
@@ -85,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1501694762138862}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.078, z: 0}
+  m_LocalPosition: {x: 0.45, y: -0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4010261065680424}
@@ -98,8 +100,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1691384759526598}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.2, y: -0.84, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalPosition: {x: 2.49, y: -2.33, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4010261065680424}
   m_Father: {fileID: 0}
@@ -137,18 +139,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.004781604, y: 0.032514155}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.2, y: 0.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.2}
+  m_Size: {x: 0.40464807, y: 0.6054708}
   m_EdgeRadius: 0
 --- !u!95 &95944946351349330
 Animator:
@@ -193,6 +195,38 @@ MonoBehaviour:
   _playerNumber: 1
   _baseColor: 1
   _currentColor: 0
+--- !u!114 &114879316841638636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1691384759526598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e310169a5712022419d573b401226971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteColorsList: []
+--- !u!114 &114966427987553640
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1706361744161462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e310169a5712022419d573b401226971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteColorsList:
+  - _color: 0
+    _sprite: {fileID: 21300000, guid: 4ffb55849af5eb747a9024de21c1c174, type: 3}
+  - _color: 1
+    _sprite: {fileID: 21300000, guid: 79588d447b01e2a4dbf5978258b6f807, type: 3}
+  - _color: 2
+    _sprite: {fileID: 21300000, guid: 4ffb55849af5eb747a9024de21c1c174, type: 3}
+  - _color: 3
+    _sprite: {fileID: 21300000, guid: bef456154dba3d144bd4907ff84b0e63, type: 3}
 --- !u!114 &114982393858854052
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -205,12 +239,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _deathDuration: 2
-  muzzle: {fileID: 4630222513882022}
+  _muzzle: {fileID: 4630222513882022}
   projectilePrefab: {fileID: 1535730519748186, guid: 3f25759bf9b9a7e409aed01f7b15ff1c,
     type: 2}
   _rotateSpeed: 1250
   _moveSpeed: 7.5
   _shootRate: 0.075
+  _gun: {fileID: 4010261065680424}
+  _muzzleBasePosition: {x: 0.45, y: -0.07, z: 0}
+  _muzzleFlippedPosition: {x: 0.45, y: 0.07, z: 0}
 --- !u!212 &212130076917923900
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -245,7 +282,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 79588d447b01e2a4dbf5978258b6f807, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

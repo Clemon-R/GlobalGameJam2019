@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(_temporarilyColorChanged + " " + _colorChangeDuration + _colorChangeTime + " < " + Time.time);
         if (_temporarilyColorChanged && _colorChangeDuration + _colorChangeTime < Time.time)
         {
             _temporarilyColorChanged = false;
@@ -69,6 +68,14 @@ public class Player : MonoBehaviour
     {
         _currentColor = newColor;
         _colorChanger.ChangeColor(_currentColor);
+        Animator animator = GetComponent<Animator>();
+
+        animator.SetBool("IsRed", false);
+        animator.SetBool("IsBlue", false);
+        animator.SetBool("IsPurple", false);
+
+        string booleanColor = newColor == ColorUtil.Colors.BLUE ? "IsBlue" : newColor == ColorUtil.Colors.RED ? "IsRed" : "IsPurple";
+        animator.SetBool(booleanColor, true);
     }
 
     public void TemporaryChangeColor(float duration, ColorUtil.Colors newColor)

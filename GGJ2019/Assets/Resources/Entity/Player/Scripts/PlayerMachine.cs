@@ -14,7 +14,7 @@ public class PlayerMachine : StateMachine
     private float _deathTime;
 
     [SerializeField]
-    private Transform muzzle;
+    private Transform _muzzle;
     [SerializeField]
     private GameObject projectilePrefab;
 
@@ -31,6 +31,13 @@ public class PlayerMachine : StateMachine
 
     private Rigidbody2D rigidBody;
 
+    [SerializeField]
+    private Transform _gun;
+
+    [SerializeField]
+    private Vector3 _muzzleBasePosition;
+    [SerializeField]
+    private Vector3 _muzzleFlippedPosition;
 	void Start ()
     {
         rigidBody = GetComponent<Rigidbody2D>();
@@ -51,13 +58,12 @@ public class PlayerMachine : StateMachine
 
     void Idle_EnterState()
     {
-
+        GetComponent<Animator>().SetBool("IsIdle", true);
     }
 
     void Idle_Update()
     {
-        if (_rotationInput != Vector3.zero)
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Vector3.forward, _rotationInput), _rotateSpeed * Time.deltaTime);
+        Rotate();
         if (_inputController.GetInputs().Shoot)
             Shoot();
         if (_movementInput != Vector3.zero)
@@ -69,17 +75,17 @@ public class PlayerMachine : StateMachine
 
     void Idle_ExitState()
     {
-
+        GetComponent<Animator>().SetBool("IsIdle", false);
     }
 
     void Move_EnterState()
     {
-
+        GetComponent<Animator>().SetBool("IsWalk", true);
     }
 
     void Move_Update()
     {
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Vector3.forward, _rotationInput), _rotateSpeed * Time.deltaTime);
+        Rotate();
         if (_inputController.GetInputs().Shoot)
             Shoot();
         if (transform.position.x + _movementInput.x < World.Instance.Boundary.min.x || transform.position.x + _movementInput.x > World.Instance.Boundary.max.x)
@@ -96,7 +102,7 @@ public class PlayerMachine : StateMachine
 
     void Move_ExitState()
     {
-
+        GetComponent<Animator>().SetBool("IsWalk", false);
     }
 
     void Die_EnterState()
@@ -110,6 +116,40 @@ public class PlayerMachine : StateMachine
         {
             currentState = PlayerStates.Respawn;
             return;
+        }
+    }
+
+    void Rotate()
+    {
+        if (_rotationInput != Vector3.zero)
+        {
+            Quaternion gunRotation = Quaternion.RotateTowards(_gun.rotation, Quaternion.LookRotation(Vector3.forward, _rotationInput), _rotateSpeed * Time.deltaTime);
+            _gun.rotation = Quaternion.LookRotation(Vector3.forward, _rotationInput) * Quaternion.Euler(0, 0, 90);
+            //Vector3 eulerRotation;
+        }
+        Vector3 rotation = _gun.rotation.eulerAngles;
+        Debug.Log(rotation);
+
+        if (rotation.z > 90 && rotation.z < 270)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+            _gun.GetComponent<SpriteRenderer>().flipY = true;
+            _muzzle.transform.localPosition = _muzzleFlippedPosition;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+            _gun.GetComponent<SpriteRenderer>().flipY = false;
+            _muzzle.transform.localPosition = _muzzleBasePosition;
+        }
+
+        if (rotation.z > 180)
+        {
+            _gun.GetComponent<SpriteRenderer>().sortingOrder = GetComponent<SpriteRenderer>().sortingOrder + 1;
+        }
+        else
+        {
+            _gun.GetComponent<SpriteRenderer>().sortingOrder = GetComponent<SpriteRenderer>().sortingOrder - 1;
         }
     }
 
@@ -138,7 +178,7 @@ public class PlayerMachine : StateMachine
         if (_lastShot + _shootRate < Time.time)
         {
             //Debug.Log("Shoot");
-            GameObject obj = Instantiate(projectilePrefab, muzzle.position, transform.rotation);
+            GameObject obj = Instantiate(projectilePrefab, _muzzle.position, _gun.rotation * Quaternion.Euler(0, 0, -90));
             PlayerProjectile projectile = obj.GetComponent<PlayerProjectile>();
             Player player = GetComponent<Player>();
             if (projectile == null || player == null)
