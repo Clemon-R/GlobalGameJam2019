@@ -40,6 +40,11 @@ public class PlayerMachine : StateMachine
     [SerializeField]
     private Vector3 _muzzleFlippedPosition;
 
+    [SerializeField]
+    private float _respawnInvincibleTime = 2.0f;
+    private bool _invincible;
+    private float _respawnTime;
+
     private GameObject _deathEffectPrefab;
 
 	void Start ()
@@ -58,7 +63,22 @@ public class PlayerMachine : StateMachine
 
     protected override void LateGlobalSuperUpdate()
     {
+        GetComponent<Collider2D>().enabled = true;
+        if (_invincible && _respawnTime + _respawnInvincibleTime < Time.time)
+        {
+            _invincible = false;
+            GetComponent<Collider2D>().enabled = true;
+        }
+    }
 
+    IEnumerator InvincibilityBlink()
+    {
+        while (_invincible)
+        {
+            float curr = GetComponent<SpriteRenderer>().material.GetFloat("_FlashAmount");
+            GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", curr == 0 ? 0.6f : 0);
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 
     void Idle_EnterState()
@@ -178,6 +198,9 @@ public class PlayerMachine : StateMachine
     {
         GetComponent<Player>().Dead = false;
         transform.position = World.Instance.Fire.transform.position;
+        _invincible = true;
+        _respawnTime = Time.time;
+        StartCoroutine("InvincibilityBlink");
     }
 
     void Respawn_Update()
@@ -188,7 +211,6 @@ public class PlayerMachine : StateMachine
     void Respawn_ExitState()
     {
         GetComponent<SpriteRenderer>().enabled = true;
-        GetComponent<Collider2D>().enabled = true;
         foreach (Transform child in transform)
         {
             child.gameObject.SetActive(true);

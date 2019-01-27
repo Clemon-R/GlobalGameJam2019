@@ -10,7 +10,6 @@ public class WormMonster : Monster
     private int _buriedFireDamage = 10;
     [SerializeField]
     private int _landFireDamage = 20;
-
     [SerializeField]
     private float _buriedMoveSpeed = 30;
     [SerializeField]
@@ -19,6 +18,8 @@ public class WormMonster : Monster
     private float _kickedOffset = 5;
     [SerializeField]
     private float _kickedLandTime = 2;
+    [SerializeField]
+    private float _kickedRotateSpeed = 180;
 
     private Fire _fire;
     private Vector3 _kickedLandPosition;
@@ -114,6 +115,7 @@ public class WormMonster : Monster
 
     void Kicked_EnterState()
     {
+        GetComponent<Animator>().SetBool("Walk", true);
         // Play kicked animation
         Vector3 direction = _fire.transform.position - transform.position;
         Vector2 perpendicularVector = Vector2.Perpendicular(direction).normalized;
@@ -126,7 +128,8 @@ public class WormMonster : Monster
 
     void Kicked_Update()
     {
-        transform.position = Vector3.Lerp(_kickedStartPosition, _kickedLandPosition, Time.time / (_kickedStartTime + _kickedLandTime));
+        transform.Rotate(new Vector3(0, 0, 1) * _kickedRotateSpeed * Time.deltaTime);
+        transform.position = Vector3.Lerp(_kickedStartPosition, _kickedLandPosition, (Time.time - _kickedStartTime) / _kickedLandTime);
         if (_kickedStartTime + _kickedLandTime < Time.time)
         {
             currentState = WormMonsterStates.MoveLand;
@@ -140,6 +143,7 @@ public class WormMonster : Monster
     void MoveLand_EnterState()
     {
         // Play move on land animation
+        transform.rotation = Quaternion.identity;
         GetComponent<BoxCollider2D>().enabled = true;
     }
 
