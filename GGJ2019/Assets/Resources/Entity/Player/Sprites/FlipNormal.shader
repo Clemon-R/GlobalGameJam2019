@@ -5,6 +5,8 @@
 			[PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
 			_BumpMap("Normalmap", 2D) = "bump" {}
 			_Color("Tint", Color) = (1,1,1,1)
+			_FlashColor("Flash Color", Color) = (1,1,1,1)
+			_FlashAmount("Flash Amount",Range(0.0,1.0)) = 0.0
 			[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
 					_Cutoff("Alpha Cutoff", Range(0,1)) = 0.5
 
@@ -38,6 +40,9 @@
 				fixed4 _Color;
 				float _ScaleX;
 
+				fixed4 _FlashColor;
+				float _FlashAmount;
+
 				struct Input
 				{
 					float2 uv_MainTex;
@@ -62,6 +67,8 @@
 				void surf(Input IN, inout SurfaceOutput o)
 				{
 					fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * IN.color;
+					c.rgb = lerp(c.rgb, _FlashColor.rgb, _FlashAmount);
+					c.rgb *= c.a;
 					o.Albedo = c.rgb;
 					o.Alpha = c.a;
 					o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap));
@@ -78,6 +85,9 @@
 					#pragma surface surf Lambert alpha vertex:vert addshadow alphatest:_Cutoff 
 					#pragma multi_compile DUMMY PIXELSNAP_ON 
 
+
+					fixed4 _FlashColor;
+					float _FlashAmount;
 					sampler2D _MainTex;
 					sampler2D _BumpMap;
 					fixed4 _Color;
@@ -107,7 +117,10 @@
 					void surf(Input IN, inout SurfaceOutput o)
 					{
 						fixed4 c = tex2D(_MainTex, IN.uv_MainTex) * IN.color;
+						c.rgb = lerp(c.rgb, _FlashColor.rgb, _FlashAmount);
+						c.rgb *= c.a;
 						o.Albedo = c.rgb;
+
 						o.Alpha = c.a;
 						o.Normal = UnpackNormal(tex2D(_BumpMap, IN.uv_BumpMap));
 						o.Normal.z *= -1;
