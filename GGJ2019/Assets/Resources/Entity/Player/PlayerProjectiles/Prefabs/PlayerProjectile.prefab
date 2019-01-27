@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad49cf7f2e8051a40b20d394f8497c8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deathFX: {fileID: 1955472320859916, guid: 375ee0c7dadf7034cbb62641aecaf2b5, type: 2}
   _colorChangeDuration: 2
   _damage: 30
   _moveSpeed: 20
