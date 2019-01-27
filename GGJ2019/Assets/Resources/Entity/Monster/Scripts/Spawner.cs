@@ -47,19 +47,19 @@ public class Spawner : MonoBehaviour
             return true;
         for (int i = 0; i < nbr; i++)
         {
-            int tmpX, tmpY;
+            float tmpX, tmpY;
             if (Random.Range(0, 2) == 0)
             {
-                tmpX = Random.Range(0, 2) == 0 ? (int)World.Instance.Boundary.min.x - 1 : (int)World.Instance.Boundary.max.x + 1;
-                tmpY = Random.Range((int)World.Instance.Boundary.min.y - 1, (int)World.Instance.Boundary.max.y + 2);
+                tmpX = Random.Range(0, 2) == 0 ? World.Instance.Boundary.min.x - 1 : World.Instance.Boundary.max.x + 1;
+                tmpY = Random.Range(World.Instance.Boundary.min.y - 1, World.Instance.Boundary.max.y + 2);
             }
             else
             {
-                tmpY = Random.Range(0, 2) == 0 ? (int)World.Instance.Boundary.min.y - 1 : (int)World.Instance.Boundary.max.y + 1;
-                tmpX = Random.Range((int)World.Instance.Boundary.min.x - 1, (int)World.Instance.Boundary.max.x + 2);
+                tmpY = Random.Range(0, 2) == 0 ? World.Instance.Boundary.min.y - 1 : World.Instance.Boundary.max.y + 1;
+                tmpX = Random.Range(World.Instance.Boundary.min.x - 1, World.Instance.Boundary.max.x + 2);
             }
-            
-            GameObject obj = Instantiate(prefab, new Vector3(tmpX, tmpY, 0), prefab.transform.rotation);
+            Debug.Log("["+name+"] - Spawning at X: " + tmpX + ", tmpY: " + tmpY);
+            GameObject obj = Instantiate(prefab, new Vector2(tmpX, tmpY), prefab.transform.rotation);
             Debug.Log("[" + name + "] - Spawning mob: "+ obj.name);
             nbr--;
             return false;

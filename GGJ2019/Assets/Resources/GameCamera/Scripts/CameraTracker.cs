@@ -31,6 +31,8 @@ public class CameraTracker : MonoBehaviour {
         camera = GetComponent<Camera>();
         camera.orthographic = true;
         targetedSize = camera.orthographicSize;
+        Rect cameraBoundary = GetCameraBoundary();
+        World.Instance.Boundary = cameraBoundary;
     }
 
     void LateUpdate()
