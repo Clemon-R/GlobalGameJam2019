@@ -41,7 +41,6 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(_temporarilyColorChanged + " " + _colorChangeDuration + _colorChangeTime + " < " + Time.time);
         if (_temporarilyColorChanged && _colorChangeDuration + _colorChangeTime < Time.time)
         {
             _temporarilyColorChanged = false;
