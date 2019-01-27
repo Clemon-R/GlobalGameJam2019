@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using TMPro;
 
 public class Fire : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class Fire : MonoBehaviour
     [SerializeField]
     private int originalHealth = 100;
     [SerializeField]
-    private int actualHealth;
+    public int actualHealth;
 
     [SerializeField]
     private float minHaloRange = 10f;
@@ -67,7 +68,7 @@ public class Fire : MonoBehaviour
         Debug.Log(actualHealth);
         if (actualHealth <= 0)
         {
-            Debug.Log("Game Over");
+            SceneManager.LoadScene("Main_Menu");
         }
     }
 }
