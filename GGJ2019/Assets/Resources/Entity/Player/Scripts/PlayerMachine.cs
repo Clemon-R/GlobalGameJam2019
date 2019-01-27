@@ -53,8 +53,8 @@ public class PlayerMachine : StateMachine
         rigidBody = GetComponent<Rigidbody2D>();
         _inputController = transform.GetComponent<PlayerInputController>();
         currentState = PlayerStates.Idle;
-	}
-	
+    }
+
     protected override void EarlyGlobalSuperUpdate()
     {
         _movementInput = _inputController.GetInputs().Movement;
@@ -72,10 +72,11 @@ public class PlayerMachine : StateMachine
 
     IEnumerator InvincibilityBlink()
     {
+        bool flashed = false;
         while (_invincible)
         {
-            float curr = GetComponent<SpriteRenderer>().material.GetFloat("_FlashAmount");
-            GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", curr == 0 ? 0.6f : 0);
+            GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", flashed ? 0 : 0.6f);
+            flashed = !flashed;
             yield return new WaitForSeconds(0.1f);
         }
     }

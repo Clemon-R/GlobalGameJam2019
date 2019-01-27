@@ -126,6 +126,7 @@ MonoBehaviour:
   _landMoveSpeed: 3
   _kickedOffset: 4
   _kickedLandTime: 2
+  _kickedRotateSpeed: 180
 --- !u!212 &212255062350513234
 SpriteRenderer:
   m_ObjectHideFlags: 1

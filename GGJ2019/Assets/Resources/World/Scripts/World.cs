@@ -16,6 +16,14 @@ public class World : MonoBehaviour
         get { return _fire; }
     }
 
+    [SerializeField]
+    private FreezeScreen _screenFreeze;
+
+    public FreezeScreen ScreenFreeze
+    {
+        get { return _screenFreeze; }
+    }
+
     //Static const
     [SerializeField]
     private Player[] _players;
@@ -67,10 +75,16 @@ public class World : MonoBehaviour
     {
         _instance._players = FindObjectsOfType<Player>();
         _instance._fire = FindObjectOfType<Fire>();
+        _instance._screenFreeze = FindObjectOfType<FreezeScreen>();
         if (_instance._fire == null)
         {
             GameObject go = (GameObject)Instantiate(Resources.Load("Entity/Fire/Prefabs/Fire"), Vector3.zero, Quaternion.identity);
             _instance._fire = go.GetComponent<Fire>();
+        }
+        if (_instance._screenFreeze == null)
+        {
+            GameObject go = (GameObject)Instantiate(Resources.Load("World/Prefabs/ScreenFreezer"), Vector3.zero, Quaternion.identity);
+            _instance._screenFreeze = go.GetComponent<FreezeScreen>();
         }
         if (_instance._players == null)
         {

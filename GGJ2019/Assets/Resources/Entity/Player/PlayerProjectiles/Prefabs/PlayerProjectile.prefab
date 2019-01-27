@@ -150,15 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e310169a5712022419d573b401226971, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteColorsList:
-  - _color: 0
-    _sprite: {fileID: 21300000, guid: efdd6d66c4f4bea488dcfd68c05fac39, type: 3}
-  - _color: 1
-    _sprite: {fileID: 21300000, guid: efdd6d66c4f4bea488dcfd68c05fac39, type: 3}
-  - _color: 2
-    _sprite: {fileID: 21300000, guid: efdd6d66c4f4bea488dcfd68c05fac39, type: 3}
-  - _color: 3
-    _sprite: {fileID: 21300000, guid: efdd6d66c4f4bea488dcfd68c05fac39, type: 3}
+  _spriteColorsList: []
 --- !u!114 &114554928907082310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -174,6 +166,7 @@ MonoBehaviour:
   _colorChangeDuration: 2
   _damage: 30
   _moveSpeed: 20
+  _prefabExplosions: []
   _lifeTime: 2
 --- !u!212 &212412870496707210
 SpriteRenderer:
@@ -190,7 +183,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: af02582e2b4eb8b4ea5d9c376a8ebcca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

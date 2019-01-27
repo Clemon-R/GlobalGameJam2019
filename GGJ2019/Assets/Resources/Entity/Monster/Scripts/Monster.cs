@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using EZCameraShake;
 
 public class Monster : StateMachine
 {
@@ -20,7 +21,7 @@ public class Monster : StateMachine
         Debug.Log("[" + name + "] - Attack: "+target.name);
     }
 
-    public void TakeHit(int damage, ColorUtil.Colors color)
+    public virtual void TakeHit(int damage, ColorUtil.Colors color)
     {
         if (color == _color)
         {
@@ -46,6 +47,7 @@ public class Monster : StateMachine
 
     protected virtual void Die()
     {
+        CameraShaker.Instance.ShakeOnce(2, 10, 0, 2);
         GameObject go = (GameObject)(Instantiate(Resources.Load("VFX/Prefabs/DeathEffects/DeathEffect_Prefab"), transform.position, Quaternion.identity));
         if (go != null)
         {

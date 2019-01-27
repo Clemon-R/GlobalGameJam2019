@@ -61,6 +61,7 @@ public class Player : MonoBehaviour
     public void TakeHit()
     {
         _playerMachine.currentState = PlayerMachine.PlayerStates.Die;
+        World.Instance.ScreenFreeze.Freeze();
     }
 
     public void SetIsOutside(bool value)

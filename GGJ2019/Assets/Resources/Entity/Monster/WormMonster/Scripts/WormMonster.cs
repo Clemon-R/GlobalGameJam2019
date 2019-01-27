@@ -36,6 +36,13 @@ public class WormMonster : Monster
         GetComponent<Animator>().SetBool(_color.ToString(), true);
     }
 
+    public override void TakeHit(int damage, ColorUtil.Colors color)
+    {
+        if ((WormMonsterStates)currentState == WormMonsterStates.MoveLand)
+        {
+            base.TakeHit(damage, color);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

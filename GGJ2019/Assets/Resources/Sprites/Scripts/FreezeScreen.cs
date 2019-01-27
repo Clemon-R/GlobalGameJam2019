@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FreezeScreen : MonoBehaviour {
+public class FreezeScreen : MonoBehaviour
+{
 
     public float duration;
     private float m_pendingFreezeDuration;

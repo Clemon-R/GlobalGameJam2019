@@ -167,7 +167,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1691384759526598}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.532, y: 0.468, z: 0}
+  m_LocalPosition: {x: 2.49, y: -2.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224743624929500858}
@@ -500,6 +500,7 @@ MonoBehaviour:
   _gun: {fileID: 4010261065680424}
   _muzzleBasePosition: {x: 0.45, y: -0.07, z: 0}
   _muzzleFlippedPosition: {x: 0.45, y: 0.07, z: 0}
+  _respawnInvincibleTime: 2
 --- !u!212 &212130076917923900
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -515,7 +516,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58f6831924710cf419891860ea7585f9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -607,7 +608,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 58f6831924710cf419891860ea7585f9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -627,7 +628,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: 890c01f203be6164690b72d1f200bf04, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 12ef64f405a975c41842b4b0ae8416fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
