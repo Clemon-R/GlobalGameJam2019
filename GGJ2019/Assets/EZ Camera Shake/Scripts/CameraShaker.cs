@@ -33,7 +33,7 @@ namespace EZCameraShake
 
         void Update()
         {
-            posAddShake = Vector3.zero;
+            posAddShake = new Vector3(0, 0, -1);
             rotAddShake = Vector3.zero;
 
             for (int i = 0; i < cameraShakeInstances.Count; i++)
