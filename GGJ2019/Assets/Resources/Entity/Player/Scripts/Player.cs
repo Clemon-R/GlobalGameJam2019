@@ -20,6 +20,10 @@ public class Player : MonoBehaviour
     [SerializeField]
     private ColorUtil.Colors _currentColor;
 
+
+    [SerializeField]
+    private TMPro.TextMeshProUGUI _gui;
+
     private bool _temporarilyColorChanged;
     private float _colorChangeTime;
     private float _colorChangeDuration;
@@ -47,6 +51,7 @@ public class Player : MonoBehaviour
     public void SetPlayerNumber(int number)
     {
         _playerNumber = number;
+        _gui.text = "P" + number;
     }
 
     private void Update()
@@ -69,10 +74,7 @@ public class Player : MonoBehaviour
         if (value == _out)
             return;
         _out = value;
-        if (value)
-            ChangeColor(ColorUtil.Colors.GREY);
-        else
-            ChangeColor(_baseColor);
+        ChangeColor(_baseColor);
     }
 
     public void SetBaseColor(ColorUtil.Colors color)
@@ -86,7 +88,7 @@ public class Player : MonoBehaviour
         _colorChanger.ChangeColor(_currentColor);
         Animator animator = GetComponent<Animator>();
 
-        string color = _currentColor == ColorUtil.Colors.GREY ? "BLUE" : _currentColor.ToString();
+        string color = _currentColor.ToString();
         foreach(string item in Enum.GetNames(typeof(ColorUtil.Colors)))
         {
             if (item != color)
@@ -94,6 +96,7 @@ public class Player : MonoBehaviour
             else
                 animator.SetBool(item, true);
         }
+        _gui.color = ColorUtil.UnityColorFromColorEnum(_currentColor);
         _muzzleFlash.ChangeColor(_currentColor);
     }
 

@@ -131,13 +131,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteColorsList:
-  - _color: 0
-    _sprite: {fileID: 21300000, guid: efdd6d66c4f4bea488dcfd68c05fac39, type: 3}
   - _color: 1
+    _sprite: {fileID: 21300000, guid: efdd6d66c4f4bea488dcfd68c05fac39, type: 3}
+  - _color: 0
     _sprite: {fileID: 21300000, guid: a4f46ef7db2e42141b1bb1f705f45395, type: 3}
   - _color: 2
-    _sprite: {fileID: 21300000, guid: efdd6d66c4f4bea488dcfd68c05fac39, type: 3}
-  - _color: 3
     _sprite: {fileID: 21300000, guid: 5e5ca334a7af8674790ec4283ba73644, type: 3}
 --- !u!114 &114488205377629150
 MonoBehaviour:

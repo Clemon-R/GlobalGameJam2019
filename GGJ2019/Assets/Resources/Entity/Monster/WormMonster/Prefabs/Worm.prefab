@@ -124,9 +124,10 @@ MonoBehaviour:
   _landFireDamage: 20
   _buriedMoveSpeed: 4
   _landMoveSpeed: 3
-  _kickedOffset: 4
+  _kickedOffset: 3
   _kickedLandTime: 2
   _kickedRotateSpeed: 180
+  _kickedMaxScale: {x: 1.5, y: 1.5, z: 1}
 --- !u!212 &212255062350513234
 SpriteRenderer:
   m_ObjectHideFlags: 1

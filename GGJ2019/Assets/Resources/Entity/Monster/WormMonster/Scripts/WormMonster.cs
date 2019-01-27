@@ -20,7 +20,10 @@ public class WormMonster : Monster
     private float _kickedLandTime = 2;
     [SerializeField]
     private float _kickedRotateSpeed = 180;
+    [SerializeField]
+    private Vector3 _kickedMaxScale = new Vector3(2, 2, 1);
 
+    private Vector3 _startScale;
     private Fire _fire;
     private Vector3 _kickedLandPosition;
     private Vector3 _kickedStartPosition;
@@ -128,15 +131,21 @@ public class WormMonster : Monster
         Vector2 perpendicularVector = Vector2.Perpendicular(direction).normalized;
 
         int random = Random.Range(0, 2);
-        _kickedLandPosition = new Vector3(perpendicularVector.x, perpendicularVector.y, 0) * (_kickedOffset * (random == 0 ? -1 : 1));
+        _kickedLandPosition = transform.position + new Vector3(perpendicularVector.x, perpendicularVector.y, 0) * _kickedOffset * (random == 0 ? -1 : 1);
         _kickedStartPosition = transform.position;
         _kickedStartTime = Time.time;
+        _startScale = transform.localScale;
+        //Debug.Log("Dir : " + direction + " , perpendicular vector : " + Vector2.Perpendicular(direction) + " ,normalized : " + perpendicularVector + " start pos : " + _kickedStartPosition + " land pos " + _kickedLandPosition);
     }
 
     void Kicked_Update()
     {
         transform.Rotate(new Vector3(0, 0, 1) * _kickedRotateSpeed * Time.deltaTime);
         transform.position = Vector3.Lerp(_kickedStartPosition, _kickedLandPosition, (Time.time - _kickedStartTime) / _kickedLandTime);
+        if (_kickedStartTime < _kickedLandTime / 2)
+            transform.localScale = Vector3.Lerp(_startScale, _kickedMaxScale, ((Time.time - _kickedStartTime) / _kickedLandTime) * 2);
+        else
+            transform.localScale = Vector3.Lerp(_kickedMaxScale, _startScale, ((Time.time - _kickedStartTime) / _kickedLandTime) * 2);
         if (_kickedStartTime + _kickedLandTime < Time.time)
         {
             currentState = WormMonsterStates.MoveLand;

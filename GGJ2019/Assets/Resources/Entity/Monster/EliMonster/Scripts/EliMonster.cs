@@ -94,12 +94,10 @@ public class EliMonster : Monster
             case ColorUtil.Colors.BLUE:
                 targetColors.Add(ColorUtil.Colors.RED);
                 break;
-            case ColorUtil.Colors.GREY:
             case ColorUtil.Colors.PURPLE:
                 targetColors.Add(ColorUtil.Colors.RED);
                 targetColors.Add(ColorUtil.Colors.BLUE);
                 targetColors.Add(ColorUtil.Colors.PURPLE);
-                targetColors.Add(ColorUtil.Colors.GREY);
                 break;
         }
         return targetColors;
@@ -113,14 +111,6 @@ public class EliMonster : Monster
 
         if (_players != null)
         {
-            if (GetColor() == ColorUtil.Colors.GREY)
-            {
-                if (greyTarget == null || greyTarget.GetComponent<Player>().Dead)
-                {
-                    greyTarget = _players[Random.Range(0, _players.Length)].transform;
-                }
-                return greyTarget;
-            }
             for (int i = 0; i < _players.Length; i++)
             {
                 if (_players[i].Dead)
