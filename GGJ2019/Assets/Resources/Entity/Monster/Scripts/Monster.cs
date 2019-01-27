@@ -8,6 +8,7 @@ public class Monster : StateMachine
     private float _maxHp = 100;
 
     private float _currentHp;
+    [SerializeField]
     protected ColorUtil.Colors _color;
 
     public void Hit(GameObject target, string colorCode)
@@ -32,6 +33,11 @@ public class Monster : StateMachine
 
     protected virtual void Die()
     {
+        GameObject go = (GameObject)(Instantiate(Resources.Load("VFX/Prefabs/DeathEffects/DeathEffect_Prefab"), transform.position, Quaternion.identity));
+        if (go != null)
+        {
+            go.GetComponent<Animator>().SetBool(_color.ToString(), true);
+        }
         Destroy(gameObject);
     }
 

@@ -32,7 +32,9 @@ public class WormMonster : Monster
         rigidBody = GetComponent<Rigidbody2D>();
         _fire = World.Instance.Fire;
         currentState = WormMonsterStates.MoveBuried;
+        GetComponent<Animator>().SetBool(_color.ToString(), true);
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -61,6 +63,7 @@ public class WormMonster : Monster
                 Player player = collision.GetComponent<Player>();
 
                 player.TakeHit();
+                currentState = WormMonsterStates.Die;
             }
             if (collision.transform.CompareTag("Fire"))
             {
@@ -161,7 +164,7 @@ public class WormMonster : Monster
 
     void Die_EnterState()
     {
-        Destroy(gameObject);
+        Die();
     }
 
     void Die_Update()

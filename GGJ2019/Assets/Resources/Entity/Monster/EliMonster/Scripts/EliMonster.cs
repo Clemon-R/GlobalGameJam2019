@@ -9,16 +9,30 @@ public class EliMonster : Monster
     private Rigidbody2D rigidBody;
 
     [SerializeField]
-    private float _moveSpeed = 8;
+    private float _moveSpeed = 5;
 
 	protected override void Start ()
     {
+        base.Start();
         rigidBody = GetComponent<Rigidbody2D>();
         _players = World.Instance.Players;
         currentState = EliMonsterStates.Spawn;
+        GetComponent<Animator>().SetBool(_color.ToString(), true);
 	}
-	
-	void Spawn_EnterState()
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+            if (collision.transform.CompareTag("Player"))
+            {
+                Player player = collision.GetComponent<Player>();
+
+                player.TakeHit();
+                Die();
+            }
+    }
+
+    void Spawn_EnterState()
     {
         currentState = EliMonsterStates.Move;
     }

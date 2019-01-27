@@ -13,6 +13,9 @@ public class PlayerProjectile : MonoBehaviour
     private ColorUtil.Colors _color;
 
     [SerializeField]
+    private GameObject _deathFX;
+
+    [SerializeField]
     private float _colorChangeDuration = 2.0f;
 
     [SerializeField]
@@ -54,10 +57,9 @@ public class PlayerProjectile : MonoBehaviour
         rigidBody.MovePosition(transform.position + transform.up * _moveSpeed * Time.deltaTime);
         if (_spawnTime + _lifeTime < Time.time)
         {
-            Destroy(gameObject);
+            GetDestroyed();
         }
 	}
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -70,23 +72,23 @@ public class PlayerProjectile : MonoBehaviour
             {
                 monster.TakeHit(_damage, _color);
             }
-            GameObject explosion;
-            _explosions.TryGetValue(_color, out explosion);
-            if (explosion != null)
-            {
-                Instantiate(explosion, transform.position, explosion.transform.rotation);
-            }
-            Destroy(gameObject);
+            GetDestroyed();
         }
         else if (collision.transform.CompareTag("Player"))
         {
             Player player = collision.GetComponent<Player>();
 
             player.TemporaryChangeColor(_colorChangeDuration, ColorUtil.Mix(GetColor(), player.GetColor()));
-            Destroy(gameObject);
+            GetDestroyed();
         }
     }
 
+    public void GetDestroyed()
+    {
+        GameObject go = Instantiate(_deathFX, transform.position, Quaternion.identity);
+        go.GetComponent<Animator>().SetBool(_color.ToString(), true);
+        Destroy(gameObject);
+    }
 
     public ColorUtil.Colors GetColor()
     {
