@@ -80,6 +80,7 @@ public class PlayerMachine : StateMachine
             flashed = !flashed;
             yield return new WaitForSeconds(0.1f);
         }
+        GetComponent<SpriteRenderer>().material.SetFloat("_FlashAmount", 0);
     }
 
     void Idle_EnterState()
