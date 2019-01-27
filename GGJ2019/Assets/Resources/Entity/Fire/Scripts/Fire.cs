@@ -15,7 +15,8 @@ public class Fire : MonoBehaviour
 
     [SerializeField]
     private int originalHealth = 100;
-    private int actualHealth = 100;
+    [SerializeField]
+    private int actualHealth;
 
     [SerializeField]
     private float minHaloRange = 10f;
@@ -52,9 +53,9 @@ public class Fire : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
         var percent = ((float)actualHealth / (float)originalHealth);
-        var tmpRange = percent * originalRange;
-        var tmpSize = percent * originalCookie;
-        light.range = tmpRange;
+        var tmpRange = percent * (1f + (1f - percent) / 1.50f)  * originalRange ;
+        var tmpSize = percent * (percent < 0.7f ? percent / 0.7f * 0.5f + 0.5f : 1) * originalCookie;
+        light.range = tmpRange < minHaloRange ? minHaloRange : tmpRange;
         halo.cookieSize = tmpSize < minHaloRange ? minHaloRange : tmpSize; 
         AreaChecking(World.Instance.Players);
     }
