@@ -500,6 +500,7 @@ MonoBehaviour:
   _gun: {fileID: 4010261065680424}
   _muzzleBasePosition: {x: 0.45, y: -0.07, z: 0}
   _muzzleFlippedPosition: {x: 0.45, y: 0.07, z: 0}
+  _respawnInvincibleTime: 2
 --- !u!212 &212130076917923900
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -515,7 +516,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: af02582e2b4eb8b4ea5d9c376a8ebcca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -607,7 +608,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: af02582e2b4eb8b4ea5d9c376a8ebcca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
