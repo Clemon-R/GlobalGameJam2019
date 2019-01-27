@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 108153494420219340}
   - component: {fileID: 95523359393341490}
   m_Layer: 0
-  m_Name: Directional Light
-  m_TagString: Untagged
+  m_Name: Firecamp
+  m_TagString: Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -203,10 +203,10 @@ Light:
   m_GameObject: {fileID: 1397547210129614}
   m_Enabled: 1
   serializedVersion: 8
-  m_Type: 1
-  m_Color: {r: 0.9482198, g: 1, b: 0.6839622, a: 1}
-  m_Intensity: 0.45
-  m_Range: 10
+  m_Type: 2
+  m_Color: {r: 0.9917453, g: 1, b: 0.8349056, a: 1}
+  m_Intensity: 0
+  m_Range: 14.78
   m_SpotAngle: 30
   m_CookieSize: 30
   m_Shadows:
@@ -240,10 +240,10 @@ Light:
   m_GameObject: {fileID: 1575083577231292}
   m_Enabled: 1
   serializedVersion: 8
-  m_Type: 2
-  m_Color: {r: 0.7118226, g: 0.8867924, b: 0.40574938, a: 1}
-  m_Intensity: 15
-  m_Range: 20
+  m_Type: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
