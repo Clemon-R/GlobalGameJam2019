@@ -122,7 +122,7 @@ MonoBehaviour:
   _maxHp: 100
   _spawnDuration: 0.5
   _fireDamage: 10
-  _moveSpeed: 6
+  _moveSpeed: 3
   _jumpDistance: 5
   _pauseBeforeJump: 0.5
   _jumpSpeed: 16
@@ -160,7 +160,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 12
   m_Sprite: {fileID: 21300000, guid: 239fe2082800de148aef72124cc6b07f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
