@@ -63,11 +63,10 @@ public class PlayerMachine : StateMachine
 
     protected override void LateGlobalSuperUpdate()
     {
-        GetComponent<Collider2D>().enabled = true;
         if (_invincible && _respawnTime + _respawnInvincibleTime < Time.time)
         {
             _invincible = false;
-            GetComponent<Collider2D>().enabled = true;
+            GetComponent<BoxCollider2D>().enabled = true;
         }
     }
 
@@ -133,7 +132,7 @@ public class PlayerMachine : StateMachine
     void Die_EnterState()
     {
         GetComponent<SpriteRenderer>().enabled = false;
-        GetComponent<Collider2D>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
         GameObject go = Instantiate(_deathEffectPrefab, transform.position, Quaternion.identity);
         if (go != null)
         {
