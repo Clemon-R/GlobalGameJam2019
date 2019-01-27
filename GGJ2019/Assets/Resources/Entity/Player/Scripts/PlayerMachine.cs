@@ -128,7 +128,6 @@ public class PlayerMachine : StateMachine
             //Vector3 eulerRotation;
         }
         Vector3 rotation = _gun.rotation.eulerAngles;
-        Debug.Log(rotation);
 
         if (rotation.z > 90 && rotation.z < 270)
         {

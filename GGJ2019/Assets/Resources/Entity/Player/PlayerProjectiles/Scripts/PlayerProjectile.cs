@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct PrefabExplosion
+{
+    public ColorUtil.Colors _color;
+    public GameObject _go;
+}
 public class PlayerProjectile : MonoBehaviour
 {
     private ColorUtil.Colors _color;
@@ -15,6 +21,10 @@ public class PlayerProjectile : MonoBehaviour
     [SerializeField]
     private float _moveSpeed = 20;
 
+    [SerializeField]
+    private List<PrefabExplosion> _prefabExplosions = new List<PrefabExplosion>();
+    private Dictionary<ColorUtil.Colors, GameObject> _explosions = new Dictionary<ColorUtil.Colors, GameObject>();
+
     private ColorChanger _colorChanger;
     // Durée de vie ou disparition hors caméra ?
     [SerializeField]
@@ -22,6 +32,14 @@ public class PlayerProjectile : MonoBehaviour
     private float _spawnTime;
 
     private Rigidbody2D rigidBody;
+
+    private void Awake()
+    {
+        foreach (PrefabExplosion item in _prefabExplosions)
+        {
+            _explosions.Add(item._color, item._go);
+        }
+    }
 
     private void Start()
     {
@@ -51,6 +69,12 @@ public class PlayerProjectile : MonoBehaviour
             if (monster != null)
             {
                 monster.TakeHit(_damage, _color);
+            }
+            GameObject explosion;
+            _explosions.TryGetValue(_color, out explosion);
+            if (explosion != null)
+            {
+                Instantiate(explosion, transform.position, explosion.transform.rotation);
             }
             Destroy(gameObject);
         }
