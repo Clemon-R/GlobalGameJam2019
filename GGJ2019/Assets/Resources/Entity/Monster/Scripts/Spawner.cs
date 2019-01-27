@@ -7,6 +7,7 @@ using TMPro;
 [System.Serializable]
 public struct Wave
 {
+    public int timeBeforeWave;
     public int eliNumber;
     public int wormNumber;
     public int lutinNumber;
@@ -29,16 +30,21 @@ public class Spawner : MonoBehaviour
     private List<Wave> _waves = new List<Wave>();
     private int _nextWaveIndex = 0;
 
+    private float _waveEndTime;
     private float _timeBeforeNext = 10.0f;
     private float _waveStartTime = 0;
-
+    private Wave _currentWave;
+    private int _currentWaveIndex = 0;
     private float _rateDelai = 1.0f;
     private float _rateStartTime = 0;
     private bool _waveRunning = false;
 
     private void Start()
     {
-        _waveStartTime = Time.time + _timeBeforeNext / 2f;
+        _waveEndTime = Time.time;
+        _waveRunning = false;
+        if (_waves.Count > 0)
+            _timeBeforeNext = _waves[0].timeBeforeWave;
     }
 
     private bool SpawnGroupsOfMobs(GameObject prefab, ref int nbr, float rate)
@@ -82,19 +88,29 @@ public class Spawner : MonoBehaviour
 
     private void StartNextWave()
     {
-        if (_nextWaveIndex >= _waves.Count)
-            return;
+        _waveStartTime = Time.time;
+        _waveRunning = true;
+        waveText.enabled = true;
+        waveText.text = "Wave " + (_currentWaveIndex + 1);
+    }
+
+    private void EndWave()
+    {
+        Debug.Log("[" + name + "] - Preparing next wave");
+        _currentWaveIndex++;
+        _waveRunning = false;
+        _waveEndTime = Time.time;
+        waveText.enabled = false;
+    }
+
+    private void RunWave()
+    {
         Wave current = _waves[_nextWaveIndex];
         if (_rateStartTime + current.rate > Time.time)
             return;
-        if (_waveStartTime + _timeBeforeNext - Time.time > 5)
+        if (_waveStartTime + 3 < Time.time)
             waveText.enabled = false;
-        if (!_waveRunning)
-        {
-            _waveRunning = true;
-            waveText.enabled = true;
-            waveText.text = "Wave " + (_nextWaveIndex + 1);
-        }
+      
         Debug.Log("[" + name + "] - Starting spawning mobs...");
         _rateStartTime = Time.time;
         int id = GetRandomMobToSpawnId(current);
@@ -115,21 +131,26 @@ public class Spawner : MonoBehaviour
             }
             if (!result)
             {
-                _waves.RemoveAt(_nextWaveIndex);
-                _waves.Insert(_nextWaveIndex, current);
+                EndWave();
                 return;
             }
+            else
+                _waves[_currentWaveIndex] = current;
         }
-        Debug.Log("[" + name + "] - Preparing next wave");
-        _nextWaveIndex++;
-        _waveStartTime = Time.time;
-        _waveRunning = false;
-        waveText.enabled = false;
     }
 
     private void Update()
     {
-        if (_waveStartTime + _timeBeforeNext < Time.time)
-            StartNextWave();
+        if (_currentWaveIndex >= _waves.Count)
+            return;
+        if (!_waveRunning)
+        {
+            if (_waveEndTime + _timeBeforeNext < Time.time)
+            {
+                StartNextWave();
+            }
+            return;
+        }
+        RunWave();
     }
 }

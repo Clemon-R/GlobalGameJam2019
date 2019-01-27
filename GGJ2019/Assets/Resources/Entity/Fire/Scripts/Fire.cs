@@ -51,7 +51,8 @@ public class Fire : MonoBehaviour
 	
 
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         var percent = ((float)actualHealth / (float)originalHealth);
         var tmpRange = percent * (1f + (1f - percent) / 1.50f)  * originalRange ;
         var tmpSize = percent * (percent < 0.7f ? percent / 0.7f * 0.5f + 0.5f : 1) * originalCookie;
@@ -63,6 +64,7 @@ public class Fire : MonoBehaviour
     public void TakeHit(int damage)
     {
         actualHealth -= damage;
+        Debug.Log(actualHealth);
         if (actualHealth <= 0)
         {
             Debug.Log("Game Over");
