@@ -23,6 +23,8 @@ public class Spawner : MonoBehaviour
     private GameObject lutinMonsterPrefab;
     [SerializeField]
     private GameObject enemyContainer;
+    [SerializeField]
+    private float _uiDuration = 3;
 
     [SerializeField]
     private TextMeshProUGUI waveText;
@@ -93,7 +95,7 @@ public class Spawner : MonoBehaviour
         Wave current = _waves[_currentWaveIndex];
         if (_rateStartTime + current.rate > Time.time)
             return;
-        if (_waveStartTime + 3 < Time.time)
+        if (_waveStartTime + _uiDuration < Time.time)
             waveText.enabled = false;
 
         Debug.Log("[" + name + "] - Starting spawning mobs...");

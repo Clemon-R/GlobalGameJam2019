@@ -53,8 +53,8 @@ public class PlayerMachine : StateMachine
         rigidBody = GetComponent<Rigidbody2D>();
         _inputController = transform.GetComponent<PlayerInputController>();
         currentState = PlayerStates.Idle;
-	}
-	
+    }
+
     protected override void EarlyGlobalSuperUpdate()
     {
         _movementInput = _inputController.GetInputs().Movement;
