@@ -1,7 +1,14 @@
 fileFormatVersion: 2
-guid: 797b8f521732ce54b8f94b2f3c6ad77a
+guid: 7195ab87f04b8e74199b9df4315ca38e
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: death2_0
+    21300002: death2_1
+    21300004: death2_2
+    21300006: death2_3
+    21300008: death2_4
+    21300010: death2_5
+    21300012: death2_6
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -40,16 +47,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-<<<<<<< Updated upstream
-  spritePixelsToUnits: 100
-=======
   spritePixelsToUnits: 32
->>>>>>> Stashed changes
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -119,16 +122,9 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-<<<<<<< Updated upstream
-    sprites: []
-    outline: []
-    physicsShape: []
-    bones: []
-    spriteID: 
-=======
     sprites:
     - serializedVersion: 2
-      name: bullet_explo_00_blue_0
+      name: death2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -142,13 +138,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aaf3110204854bc4e9602eea4790c52a
+      spriteID: 220b49664598da341b965cc75da2af9c
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bullet_explo_00_blue_1
+      name: death2_1
       rect:
         serializedVersion: 2
         x: 32
@@ -162,13 +158,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb5519da642723f40b57e539d7cb26b9
+      spriteID: 0f84bea7fc8a8fc4f9a5dce4734fac47
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bullet_explo_00_blue_2
+      name: death2_2
       rect:
         serializedVersion: 2
         x: 64
@@ -182,7 +178,87 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eb257b5f75aa4084f9fca5e423a8fcca
+      spriteID: d04b3a803f37b4c4f8f8b6e5c12f2a6a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: death2_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1c34b9a4aea6c148a592234d31e6008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: death2_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 671f235dd949263498039ddc1c6c5147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: death2_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 338d7b1482f2e054da5cd002df9046fe
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: death2_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75ad2de1fecdf0046b3c3fdb8445b0f3
       vertices: []
       indices: 
       edges: []
@@ -190,8 +266,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: daef28d19fb90184da4db4680c1fbe21
->>>>>>> Stashed changes
+    spriteID: d762376712b258e44a9fcf524fb031d3
     vertices: []
     indices: 
     edges: []
