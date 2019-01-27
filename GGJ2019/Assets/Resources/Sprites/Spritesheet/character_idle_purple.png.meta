@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: 890c01f203be6164690b72d1f200bf04
+guid: b4ee9cd87d3d48341a7e0c680451f95b
 TextureImporter:
   fileIDToRecycleName:
-    21300000: character_idle_red 1_0
-    21300002: character_idle_red 1_1
+    21300000: character_idle_purple_0
+    21300002: character_idle_purple_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -119,7 +119,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: character_idle_red 1_0
+      name: character_idle_purple_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,13 +133,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53706ae037ff9ed43b19fe11797a20cb
+      spriteID: e73e5a2d523958749b8e477da73f227e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character_idle_red 1_1
+      name: character_idle_purple_1
       rect:
         serializedVersion: 2
         x: 32
@@ -153,7 +153,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d980d0df3f2eb644eb69d0818eda74e1
+      spriteID: b380796cbd2505547967c57f01355e2f
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 45a44a0e75a609a4fa1b092883030543
+    spriteID: 0aaa12b00bdf28a48a8960677bc30168
     vertices: []
     indices: 
     edges: []

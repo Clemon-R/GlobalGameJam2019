@@ -1,15 +1,11 @@
 fileFormatVersion: 2
-guid: 73fb73d8f0baf6c418c0c2a3b476204b
+guid: 838efb0c80c128c4b8fee9826418f0ab
 TextureImporter:
   fileIDToRecycleName:
-    21300000: character_idle_red_0
-    21300002: character_idle_red_1
-    21300004: character_idle_red_2
-    21300006: character_idle_red_3
-    21300008: character_idle_red_4
-    21300010: character_idle_red_5
-    21300012: character_idle_red_6
-    21300014: character_idle_red_7
+    21300000: character_walk_purple_0
+    21300002: character_walk_purple_1
+    21300004: character_walk_purple_2
+    21300006: character_walk_purple_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -125,7 +121,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: character_idle_red_0
+      name: character_walk_purple_0
       rect:
         serializedVersion: 2
         x: 0
@@ -139,13 +135,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d7c221d8ff9f4ba409584effbc3263e2
+      spriteID: 08f98479e3b3ece438d3c5e4addb06a2
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character_idle_red_1
+      name: character_walk_purple_1
       rect:
         serializedVersion: 2
         x: 32
@@ -159,13 +155,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ebbfbc0a0dc3fa94fb5fc4499111961a
+      spriteID: 2dd77e4ea10c31b45bdbc2cbd2a6bce7
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character_idle_red_2
+      name: character_walk_purple_2
       rect:
         serializedVersion: 2
         x: 64
@@ -179,13 +175,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 478dec2d8ef5fb840b1c70aecef3487e
+      spriteID: 3ee69fd668754324a93de51435f03b72
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character_idle_red_3
+      name: character_walk_purple_3
       rect:
         serializedVersion: 2
         x: 96
@@ -199,87 +195,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0282cc9d013853145ae38da38e8991ce
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character_idle_red_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 52cf06a6a2ed83a46b0fccfdbb1d36e9
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character_idle_red_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f31e47b00ae2b3f42863fcd056ba0c30
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character_idle_red_6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5370bf4808ff9164c91ff004d7d67afc
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character_idle_red_7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8716f38db1573354da2c97b1a5443da6
+      spriteID: f374624f77a6b9e4aa570eab87ad5fe0
       vertices: []
       indices: 
       edges: []
@@ -287,7 +203,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: aa895b9282c28ae4882e29faa877b3c4
+    spriteID: b4af48ed65900b14ea07333d16fb9d68
     vertices: []
     indices: 
     edges: []
